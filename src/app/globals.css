@@ -1,0 +1,121 @@
+@import "tailwindcss";
+
+/* Remove border and optional box-shadow from Google login button */
+.nsm7Bb-HzV7m-LgbsSe {
+  border: none !important;
+  /* Optional: removes raised appearance */
+  box-shadow: none !important;
+  /* Optional: removes focus outline */
+  outline: none !important;
+  /* Optional: remove white background color */
+  background-color: #f1f4f8 !important;
+}
+
+.noScrollbar {
+  /* For Firefox */
+  scrollbar-width: none;
+}
+
+.noScrollbar::-webkit-scrollbar {
+  /* For Chrome, Safari, and Opera */
+  display: none;
+}
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+  --color-text-primary: #1e1f21;
+  --color-documentation-orange: #f59432;
+  --color-compliance-green: #00cda6;
+  --color-risk-pink: #fe7a95;
+  --color-notification-bg: #f83b66;
+  --color-message-notification-text: #0090c0;
+  /* Button colors */
+  --button-cancel-bg: #e0e3e7;
+  --button-save-bg: #ffd070;
+  --button-text: #1e1f21;
+  --border-input: #525558;
+  --status-pending-bg: #ffe4ba;
+  --status-pending-border: #f9b44d;
+  --status-pending-text: #222222;
+
+  --status-approved-bg: #5ff6d1;
+  --status-approved-border: #1ed6a3;
+  --status-approved-text: #222222;
+
+  --status-rejected-bg: #ffd6df;
+  --status-rejected-border: #ff7a95;
+  --status-rejected-text: #222222;
+  --gray-600: #4f4f4f;
+  --gray-900: #2d2f32;
+  --gray-700: #636363;
+  --danger: #e53e3e;
+  --danger-bg: #fee2e2;
+  --error-text: #222222;
+  --error-icon: #e53e3e;
+  --error-btn-hover: #c53030;
+  --card-border: #e4e4e4;
+  --url-orange: #f59432;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-accordian-active: #c7cace;
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --color-compliance-subcategory-grey: #e0e3e7;
+  --color-background-page-bg: #f1f4f8;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+.nsm7Bb-HzV7m-LgbsSe:hover {
+  background-color: transparent !important;
+  box-shadow: none !important;
+}
+
+.nsm7Bb-HzV7m-LgbsSe:hover .nsm7Bb-HzV7m-LgbsSe-MJoBVe {
+  background: transparent !important;
+}
+
+.nsm7Bb-HzV7m-LgbsSe {
+  background-color: transparent;
+  border: transparent;
+}
+
+.scrollbar-none {
+  /* Firefox */
+  scrollbar-width: none;
+  /* IE 10+ */
+  -ms-overflow-style: none;
+}
+
+.scrollbar-none::-webkit-scrollbar {
+  /* Chrome, Safari, Opera */
+  display: none;
+}
+.player-wrapper {
+  position: relative;
+  padding-top: 56.25%; /* 16:9 aspect ratio */
+}
+
+.react-player {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.link-text>a, .link-text>p>a {
+  color: #F59432 !important;
+  text-decoration: underline  !important;
+  text-underline-offset: 2px  !important;
+}
+
+.testing{
+  border: solid 2px red !important;
+}

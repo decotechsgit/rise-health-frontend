@@ -1,0 +1,38 @@
+default:
+  image: node:22-alpine
+
+stages:
+  - lint
+  - build
+
+lint-check:
+  stage: lint
+  cache:
+    key: ${CI_COMMIT_REF_SLUG}
+    paths:
+      - .pnpm-store/
+  before_script:
+    - npm install -g pnpm
+    - pnpm config set store-dir .pnpm-store
+    - pnpm install --frozen-lockfile
+  script:
+    - pnpm lint
+  rules:
+    - if: $CI_MERGE_REQUEST_TARGET_BRANCH_NAME == "main" # Run only for PRs targeting the main branch
+  allow_failure: false # Ensure the job fails if `pnpm lint` fails
+
+build-check:
+  stage: build
+  cache:
+    key: ${CI_COMMIT_REF_SLUG}
+    paths:
+      - .pnpm-store/
+  before_script:
+    - npm install -g pnpm
+    - pnpm config set store-dir .pnpm-store
+    - pnpm install --frozen-lockfile
+  script:
+    - pnpm build
+  rules:
+    - if: $CI_MERGE_REQUEST_TARGET_BRANCH_NAME == "main" # Run only for PRs targeting the main branch
+  allow_failure: false # Ensure the job fails if `pnpm build` fails
