@@ -4,7 +4,6 @@ import { useForm, FormProvider } from "react-hook-form";
 
 import LabeledTextarea, { CustomTextareaProps } from "./Labeled.textarea";
 
-
 const meta: Meta<typeof LabeledTextarea> = {
   title: "Components/Shared/Form/LabeledTextarea",
   component: LabeledTextarea,

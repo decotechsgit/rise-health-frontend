@@ -65,8 +65,7 @@ const FormNav = ({ children }: FormNavProps) => {
 
   return (
     <div>
-      {
-        !(isNavDisabled === "true") &&
+      {!(isNavDisabled === "true") && (
         <NavBar
           items={navItems.map((item) => ({
             ...item,
@@ -74,7 +73,7 @@ const FormNav = ({ children }: FormNavProps) => {
           }))}
           activeItem={selectedTab}
         />
-      }
+      )}
       <div className="mt-4">{children}</div>
     </div>
   );

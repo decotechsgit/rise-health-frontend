@@ -30,7 +30,7 @@ const VerticalSidebar = () => {
     );
   }
 
-   const selectedStepKey = params.get("step");
+  const selectedStepKey = params.get("step");
   const selectedStepIndex = steps.findIndex(
     (step) => step.stepKey === selectedStepKey
   );
@@ -62,7 +62,7 @@ const VerticalSidebar = () => {
       })}
       <TextElement
         as="h2"
-        className={`pt-10 !text-[20px] font-semibold cursor-pointer ${selectedStepKey === "summary" ? "text-black" : "text-gray-500"}`}
+        className={`cursor-pointer pt-10 !text-[20px] font-semibold ${selectedStepKey === "summary" ? "text-black" : "text-gray-500"}`}
         onClick={() => {
           if (selectedStepKey !== "summary") {
             router.push(PAGES_ROUTES.onboardingSummary);

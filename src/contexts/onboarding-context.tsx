@@ -29,15 +29,14 @@ type OnboardingContextType = {
 };
 
 const OnboardingContext = createContext<OnboardingContextType | undefined>(
-  undefined,
+  undefined
 );
 
 export const OnboardingProvider = ({
-                                     children,
-                                   }: {
+  children,
+}: {
   children: React.ReactNode;
 }) => {
-
   const [onboarding, setOnboarding] = useState<OnboardingProgress | null>(null);
   const [onboardingStep, setOnboardingStep] = useState<Step | null>(null);
   const [stepCompleted, setStepCompleted] = useState<boolean>(false);
@@ -47,7 +46,8 @@ export const OnboardingProvider = ({
   >([]);
   const [allSteps, setAllSteps] = useState<Step[] | null>(null);
   const [registrationGroupStepId, setRegistrationGroupStepId] = useState("");
-  const [registrationGroupParentKey, setRegistrationGroupParentKey] = useState("");
+  const [registrationGroupParentKey, setRegistrationGroupParentKey] =
+    useState("");
 
   const fetchOnboarding = async () => {
     try {
@@ -69,16 +69,16 @@ export const OnboardingProvider = ({
     }
   };
 
-  const fetchRegistrationGroupStepId =  () => {
+  const fetchRegistrationGroupStepId = () => {
     allSteps?.forEach((step) => {
       step?.children?.forEach((child) => {
-        if(child.type === "registration_list") {
+        if (child.type === "registration_list") {
           setRegistrationGroupStepId(child.id);
-          setRegistrationGroupParentKey(step.stepKey)
+          setRegistrationGroupParentKey(step.stepKey);
         }
-      })
-    })
-  }
+      });
+    });
+  };
 
   useEffect(() => {
     fetchOnboarding();
@@ -95,16 +95,16 @@ export const OnboardingProvider = ({
   }, [onboarding]);
 
   useEffect(() => {
-    if(allSteps){
-      fetchRegistrationGroupStepId()
+    if (allSteps) {
+      fetchRegistrationGroupStepId();
     }
   }, [allSteps]);
 
   useEffect(() => {
     if (stepCompleted) {
       setCompletedSteps([
-        ...completedSteps || [],
-        ...onboarding?.progress?.completedSteps || [],
+        ...(completedSteps || []),
+        ...(onboarding?.progress?.completedSteps || []),
       ]);
     }
   }, [stepCompleted]);
@@ -124,7 +124,7 @@ export const OnboardingProvider = ({
         setCompletedSteps,
         allSteps,
         registrationGroupStepId,
-        registrationGroupParentKey
+        registrationGroupParentKey,
       }}
     >
       {children}

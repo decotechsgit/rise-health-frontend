@@ -1,7 +1,7 @@
-import Image from 'next/image';
+import Image from "next/image";
 
-import Row from '../row';
-import TextElement from '../typography/TextElement.typo';
+import Row from "../row";
+import TextElement from "../typography/TextElement.typo";
 
 interface ICardData {
   title: string;
@@ -19,8 +19,8 @@ const FeedNewsCard: React.FC<IFeedNewsCardProps> = ({ data }) => {
   const { title, description, newsDate, newsDay, newsTime, headerImage } = data;
 
   return (
-    <Row className="w-full bg-orange-100 border border-slate-200 rounded-3xl px-6 items-start">
-      <Row className="mt-3 gap-2 w-[30%] items-center">
+    <Row className="w-full items-start rounded-3xl border border-slate-200 bg-orange-100 px-6">
+      <Row className="mt-3 w-[30%] items-center gap-2">
         <TextElement as="p">{newsDate}</TextElement>
         <TextElement as="p" className="ml-4">
           {newsDay}
@@ -35,18 +35,18 @@ const FeedNewsCard: React.FC<IFeedNewsCardProps> = ({ data }) => {
           src={headerImage}
           width={200}
           height={150}
-          className="object-cover rounded-lg"
+          className="rounded-lg object-cover"
           loading="eager"
         />
 
-        <Row className="flex-col gap-3 mt-3 ml-3">
+        <Row className="mt-3 ml-3 flex-col gap-3">
           <TextElement as="h3">{title}</TextElement>
           <TextElement as="p">{description}</TextElement>
 
           <TextElement
             as="p"
-            className="text-indigo-600 cursor-pointer underline"
-            onClick={() => alert('Read more page is not available yet.')}
+            className="cursor-pointer text-indigo-600 underline"
+            onClick={() => alert("Read more page is not available yet.")}
           >
             Read More
           </TextElement>

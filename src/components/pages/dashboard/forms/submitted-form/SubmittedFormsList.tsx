@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import Link from "next/link";
 import React, { useState } from "react";
 
@@ -24,7 +24,7 @@ const TableHeader = () => (
   <tr className="bg-[var(--button-cancel-bg)]">
     {TABLE_HEADERS.map(({ label }) => (
       <th key={label} className="px-6 py-3">
-        <TextElement className="text-[12px] md:text-[16px] lg:text-[18px] font-[400] text-[var(--table-body-text)]">
+        <TextElement className="text-[12px] font-[400] text-[var(--table-body-text)] md:text-[16px] lg:text-[18px]">
           {label}
         </TextElement>
       </th>
@@ -44,13 +44,15 @@ const TableRow = ({
     className={`${index % 2 !== 0 ? "bg-[var(--button-cancel-bg)]" : "bg-white"} h-[60px]`}
   >
     <td className="px-6">
-      <TextElement className="lg:text-[18px] font-[400] w-[50vw] md:w-full md:line-clamp-3">{copy.title}</TextElement>
+      <TextElement className="w-[50vw] font-[400] md:line-clamp-3 md:w-full lg:text-[18px]">
+        {copy.title}
+      </TextElement>
     </td>
     <td className="px-6">
-      <TextElement className="lg:text-[18px] font-[400]">--</TextElement>
+      <TextElement className="font-[400] lg:text-[18px]">--</TextElement>
     </td>
     <td className="px-6">
-      <TextElement className="lg:text-[18px] font-[400]">--</TextElement>
+      <TextElement className="font-[400] lg:text-[18px]">--</TextElement>
     </td>
     <td className="px-6">
       <StatusChip text={copy.status} />
@@ -60,7 +62,7 @@ const TableRow = ({
         href={`${PAGES_ROUTES.form(copy.id)}?referenceId=${copy.referenceId}&referenceType=${copy.type}&copyId=${copy.id}&category=${copy.title}&status=${copy.status}&isCopy=${true}&navDisabled=true`}
         className="underline"
       >
-        <TextElement className="lg:text-[18px] font-[400]">View</TextElement>
+        <TextElement className="font-[400] lg:text-[18px]">View</TextElement>
       </Link>
     </td>
   </tr>
@@ -77,7 +79,9 @@ const SubmittedFormsList: React.FC<SubmittedFormsListProps> = ({
         showSearch={true}
         searchValue={search}
         actions={{ sort: { show: true }, filter: { show: true } }}
-        onSearchChange={(val) => {setSearch(val)}}
+        onSearchChange={(val) => {
+          setSearch(val);
+        }}
         searchPlaceholder="Search"
       />
       <div className="mt-6 overflow-x-auto rounded-2xl bg-[var(--table-bg,white)]">
@@ -86,10 +90,9 @@ const SubmittedFormsList: React.FC<SubmittedFormsListProps> = ({
             <TableHeader />
           </thead>
           <tbody>
-            {
-              formCopies.map((copy, index) => (
-                <TableRow key={copy.id} copy={copy} index={index} />
-              ))}
+            {formCopies.map((copy, index) => (
+              <TableRow key={copy.id} copy={copy} index={index} />
+            ))}
           </tbody>
         </table>
       </div>

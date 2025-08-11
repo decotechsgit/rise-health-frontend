@@ -1,5 +1,5 @@
-import Row from '../row';
-import TextElement from '../typography/TextElement.typo';
+import Row from "../row";
+import TextElement from "../typography/TextElement.typo";
 
 interface IRegistrationStepCardProps {
   title: string;
@@ -18,17 +18,17 @@ const RegistrationStepCard: React.FC<IRegistrationStepCardProps> = ({
 }) => {
   return (
     <Row
-      className={`h-[300px] overflow-hidden items-end rounded-2xl bg-yellow-200 ${containerClassName}`}
+      className={`h-[300px] items-end overflow-hidden rounded-2xl bg-yellow-200 ${containerClassName}`}
       style={{
         backgroundImage: `url(${imageUrl})`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
+        backgroundSize: "cover",
+        backgroundPosition: "center",
       }}
     >
       <Row
-        className={`w-full items-center justify-center gap-4 px-4 py-2 h-[50px] ${subContainerClass}`}
+        className={`h-[50px] w-full items-center justify-center gap-4 px-4 py-2 ${subContainerClass}`}
       >
-        <div className="size-[25px] bg-white rounded-full flex justify-center items-center ">
+        <div className="flex size-[25px] items-center justify-center rounded-full bg-white">
           {stepNumber}
         </div>
 

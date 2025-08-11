@@ -1,17 +1,15 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useState } from "react";
 
-import IconButton from '@/components/shared/button';
-import CategoryCard from '@/components/shared/cards/Category.card';
-import CircleCard from '@/components/shared/cards/CircleCount.card';
-import VideoTutorialModal from '@/components/shared/modals/VideoTutorial.modal';
-import Row from '@/components/shared/row';
-import TextElement from '@/components/shared/typography/TextElement.typo';
+import IconButton from "@/components/shared/button";
+import CategoryCard from "@/components/shared/cards/Category.card";
+import CircleCard from "@/components/shared/cards/CircleCount.card";
+import VideoTutorialModal from "@/components/shared/modals/VideoTutorial.modal";
+import Row from "@/components/shared/row";
+import TextElement from "@/components/shared/typography/TextElement.typo";
 
-import WatchVideo from '../WatchVideo';
+import WatchVideo from "../WatchVideo";
 
-
-import { RegistrationStepsFlowEnum } from '.';
-
+import { RegistrationStepsFlowEnum } from ".";
 
 interface ISelectSupportProps {
   handleNextStep: (step: RegistrationStepsFlowEnum) => void;
@@ -36,13 +34,13 @@ const SelectSupport: React.FC<ISelectSupportProps> = ({ handleNextStep }) => {
    */
 
   const toggleVideoModal = useCallback(() => {
-    setShowVideoModal(prev => !prev);
+    setShowVideoModal((prev) => !prev);
   }, []);
 
-  const stepHeading = 'Which type of support services will you provide?';
+  const stepHeading = "Which type of support services will you provide?";
 
   return (
-    <Row className="w-full bg-white p-4 rounded-2xl gap-4 flex-col items-end">
+    <Row className="w-full flex-col items-end gap-4 rounded-2xl bg-white p-4">
       {showVideoModal && (
         <VideoTutorialModal
           heading={stepHeading}
@@ -51,7 +49,7 @@ const SelectSupport: React.FC<ISelectSupportProps> = ({ handleNextStep }) => {
         />
       )}
 
-      <Row className="w-full justify-between items-center">
+      <Row className="w-full items-center justify-between">
         <CircleCard count={1} className="size-[40px]" />
         <WatchVideo
           title="Watch Video"
@@ -68,52 +66,52 @@ const SelectSupport: React.FC<ISelectSupportProps> = ({ handleNextStep }) => {
       <Row className="w-full flex-wrap justify-between">
         {[
           {
-            id: '01',
-            name: 'Daily Living Assistance',
+            id: "01",
+            name: "Daily Living Assistance",
             description:
-              'Support with everyday personal activities, household tasks, and shared living arrangements.',
-            tags: ['Personal Care', 'Household Tasks', 'Shared Living'],
+              "Support with everyday personal activities, household tasks, and shared living arrangements.",
+            tags: ["Personal Care", "Household Tasks", "Shared Living"],
           },
           {
-            id: '02',
-            name: 'Assistive Tech & Access',
+            id: "02",
+            name: "Assistive Tech & Access",
             description:
-              'Equipment and modifications to improve mobility, and home accessibility for greater independence.',
+              "Equipment and modifications to improve mobility, and home accessibility for greater independence.",
             tags: [
-              'Mobility Aids',
-              'Communication Devices',
-              'Home Modifications',
+              "Mobility Aids",
+              "Communication Devices",
+              "Home Modifications",
             ],
           },
           {
-            id: '03',
-            name: 'Health & Therapy',
+            id: "03",
+            name: "Health & Therapy",
             description:
-              'Therapies like physiotherapy and behavior therapy to improve well-being and independence.',
+              "Therapies like physiotherapy and behavior therapy to improve well-being and independence.",
             tags: [
-              'Physiotherapy',
-              'Occupational Therapy',
-              'Behavioral Therapy',
+              "Physiotherapy",
+              "Occupational Therapy",
+              "Behavioral Therapy",
             ],
           },
 
           {
-            id: '04',
-            name: 'Plan Management',
+            id: "04",
+            name: "Plan Management",
             description:
-              'Assistance with managing NDIS funding, budgeting, and coordinating services to optimize resources.',
+              "Assistance with managing NDIS funding, budgeting, and coordinating services to optimize resources.",
             tags: [
-              'NDIS Budgeting',
-              'Fund Management',
-              'Services Coordination',
+              "NDIS Budgeting",
+              "Fund Management",
+              "Services Coordination",
             ],
           },
           {
-            id: '05',
-            name: 'Other (Specify)',
+            id: "05",
+            name: "Other (Specify)",
             description:
               "If your services don't align with the listed categories, please specify them here for accurate registration.",
-            tags: ['Custom Support', 'Specialized Support', 'Additional Needs'],
+            tags: ["Custom Support", "Specialized Support", "Additional Needs"],
           },
         ].map((item: ISupport) => (
           <CategoryCard
@@ -121,7 +119,7 @@ const SelectSupport: React.FC<ISelectSupportProps> = ({ handleNextStep }) => {
             description={item.description}
             title={item.name}
             tags={item?.tags}
-            containerClassName={`w-[19%] cursor-pointer ${selectedSupport?.id === item.id ? 'border-2' : ''}`}
+            containerClassName={`w-[19%] cursor-pointer ${selectedSupport?.id === item.id ? "border-2" : ""}`}
             onClick={() => setSelectedSupport(item)}
           />
         ))}

@@ -1,18 +1,16 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useState } from "react";
 
-import ProgressBar from '@/components/layout/progress-bar';
-import IconButton from '@/components/shared/button';
-import CategoryCard from '@/components/shared/cards/Category.card';
-import CircleCard from '@/components/shared/cards/CircleCount.card';
-import VideoTutorialModal from '@/components/shared/modals/VideoTutorial.modal';
-import Row from '@/components/shared/row';
-import TextElement from '@/components/shared/typography/TextElement.typo';
+import ProgressBar from "@/components/layout/progress-bar";
+import IconButton from "@/components/shared/button";
+import CategoryCard from "@/components/shared/cards/Category.card";
+import CircleCard from "@/components/shared/cards/CircleCount.card";
+import VideoTutorialModal from "@/components/shared/modals/VideoTutorial.modal";
+import Row from "@/components/shared/row";
+import TextElement from "@/components/shared/typography/TextElement.typo";
 
-import WatchVideo from '../WatchVideo';
+import WatchVideo from "../WatchVideo";
 
-
-import { RegistrationStepsFlowEnum } from '.';
-
+import { RegistrationStepsFlowEnum } from ".";
 
 interface IReviewSelectedSupportProps {
   handleNextStep: (step: RegistrationStepsFlowEnum) => void;
@@ -31,18 +29,18 @@ const ReviewSelectedSupport: React.FC<IReviewSelectedSupportProps> = ({
    */
 
   const toggleVideoModal = useCallback(() => {
-    setShowVideoModal(prev => !prev);
+    setShowVideoModal((prev) => !prev);
   }, []);
 
-  const stepHeading = 'Review your selected supports';
+  const stepHeading = "Review your selected supports";
 
   return (
-    <Row className="w-full bg-white p-4 rounded-2xl gap-4 flex-col items-end">
-      <Row className="w-full justify-between items-center">
+    <Row className="w-full flex-col items-end gap-4 rounded-2xl bg-white p-4">
+      <Row className="w-full items-center justify-between">
         <Row className="w-[28%] items-center justify-between">
           <ProgressBar />
           <ProgressBar colorClassName="!bg-indigo-400" />
-          <CircleCard count={3} className="size-[40px] z-40" />
+          <CircleCard count={3} className="z-40 size-[40px]" />
         </Row>
 
         <WatchVideo
@@ -58,7 +56,7 @@ const ReviewSelectedSupport: React.FC<IReviewSelectedSupportProps> = ({
       </TextElement>
 
       <Row className="w-full justify-between">
-        <Row className="w-[25%] gap-4 items-start">
+        <Row className="w-[25%] items-start gap-4">
           <CircleCard count={1} className="size-[40px]" />
 
           <Row className="w-full flex-col gap-6">
@@ -67,9 +65,9 @@ const ReviewSelectedSupport: React.FC<IReviewSelectedSupportProps> = ({
             <Row className="w-full flex-wrap gap-3">
               {[
                 {
-                  title: 'Assistive Tech & Access',
+                  title: "Assistive Tech & Access",
                   description:
-                    'Equipment and modifications to improve mobility, and home accessibility for greater independence.',
+                    "Equipment and modifications to improve mobility, and home accessibility for greater independence.",
                 },
               ].map((item, index) => (
                 <CategoryCard
@@ -83,7 +81,7 @@ const ReviewSelectedSupport: React.FC<IReviewSelectedSupportProps> = ({
           </Row>
         </Row>
 
-        <Row className="w-[60%] gap-4 items-start">
+        <Row className="w-[60%] items-start gap-4">
           <CircleCard count={2} className="size-[40px]" />
 
           <Row className="w-full flex-col gap-6">
@@ -92,19 +90,19 @@ const ReviewSelectedSupport: React.FC<IReviewSelectedSupportProps> = ({
             <Row className="w-full flex-wrap gap-3">
               {[
                 {
-                  title: 'Personal mobility equipment',
+                  title: "Personal mobility equipment",
                   description:
-                    'Device that assist individuals in moving independently, such as wheelchairs, scooters, and walking aids.',
+                    "Device that assist individuals in moving independently, such as wheelchairs, scooters, and walking aids.",
                 },
                 {
-                  title: 'Hearing equipment',
+                  title: "Hearing equipment",
                   description:
-                    'Technology specifically designed to support hearing needs, including hearing aids and assistive listening devices.',
+                    "Technology specifically designed to support hearing needs, including hearing aids and assistive listening devices.",
                 },
                 {
-                  title: 'Specialized driver training',
+                  title: "Specialized driver training",
                   description:
-                    'Tailored driving lessons specifically for individuals with disabilities to help them safely operate a personal vehicle.',
+                    "Tailored driving lessons specifically for individuals with disabilities to help them safely operate a personal vehicle.",
                 },
               ].map((item, index) => (
                 <CategoryCard

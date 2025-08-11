@@ -4,7 +4,6 @@ import { useForm, FormProvider } from "react-hook-form";
 
 import LabeledInput, { ILabeledInputProps } from "./Labeled.input";
 
-
 const meta: Meta<typeof LabeledInput> = {
   title: "Components/Shared/Form/LabeledInput",
   component: LabeledInput,

@@ -3,6 +3,6 @@ declare global {
     id: string;
     fullName: string;
     email: string;
-  }
+  };
 }
-export {}
+export {};

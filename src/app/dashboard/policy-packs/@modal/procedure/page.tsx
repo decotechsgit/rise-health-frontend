@@ -32,11 +32,17 @@ const FormProcedure = async ({ searchParams }: FormModalProps) => {
 
   let forms: TFormData[] = [];
   try {
-    if (!subcategoryId && !referenceId) throw new Error("No subcategoryId or referenceId provided");
+    if (!subcategoryId && !referenceId)
+      throw new Error("No subcategoryId or referenceId provided");
     const apiForms = isCopy
-      ? await formCopyService.getAllFormCopies(referenceId as string, referenceType as string)
-      : await formService.getAllForms(referenceId as string, referenceType as string);
-
+      ? await formCopyService.getAllFormCopies(
+          referenceId as string,
+          referenceType as string
+        )
+      : await formService.getAllForms(
+          referenceId as string,
+          referenceType as string
+        );
 
     if (!apiForms?.length) {
       throw new Error("No forms found");
@@ -44,14 +50,14 @@ const FormProcedure = async ({ searchParams }: FormModalProps) => {
 
     forms = isCopy
       ? apiForms.map((form) => ({
-        id: form.id,
-        title: form.title ?? "",
-        description: form.description ?? "",
-        formBody: form.formBody ?? { fields: [] },
-        status: form.status,
-        originalFormId: form.originalFormId ?? "",
-        providerId: form.providerId ?? "",
-      }))
+          id: form.id,
+          title: form.title ?? "",
+          description: form.description ?? "",
+          formBody: form.formBody ?? { fields: [] },
+          status: form.status,
+          originalFormId: form.originalFormId ?? "",
+          providerId: form.providerId ?? "",
+        }))
       : apiForms;
   } catch {
     return notFound();

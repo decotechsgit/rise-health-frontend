@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import { Inter } from "next/font/google";
 const inter = Inter({ subsets: ["latin"] });
 import { RotatingLines } from "react-loader-spinner";
@@ -36,8 +36,9 @@ const IconButton: React.FC<IButton> = ({
       type={type}
       onClick={disabled ? undefined : handleOnClick}
       disabled={disabled}
-      className={`flex h-[45px] w-full items-center justify-center gap-1 rounded-[8px] border-[1px] border-[#F9C85F] bg-[#F9C85F] py-[12px] lg:h-[${lgHeight}] ${className} ${!disabled ? "cursor-pointer" : "cursor-not-allowed"
-        } ${inter.className}`}
+      className={`flex h-[45px] w-full items-center justify-center gap-1 rounded-[8px] border-[1px] border-[#F9C85F] bg-[#F9C85F] py-[12px] lg:h-[${lgHeight}] ${className} ${
+        !disabled ? "cursor-pointer" : "cursor-not-allowed"
+      } ${inter.className}`}
     >
       {Icon && (
         <ReactIcon

@@ -33,13 +33,20 @@ const PolicyModal = async ({ searchParams }: FormModalProps) => {
 
   let policies: TPolicy[] = [];
   try {
-    if (!subcategoryId && !referenceId) throw new Error("No subcategoryId or referenceId provided");
+    if (!subcategoryId && !referenceId)
+      throw new Error("No subcategoryId or referenceId provided");
     let apiResult;
     if (referenceId && referenceType) {
       if (isCopy) {
-        apiResult = await policyCopiesService.getPolicyCopies(referenceId, referenceType);
+        apiResult = await policyCopiesService.getPolicyCopies(
+          referenceId,
+          referenceType
+        );
       } else {
-        apiResult = await policyService.getPoliciesBySubcategoryId(referenceId, referenceType);
+        apiResult = await policyService.getPoliciesBySubcategoryId(
+          referenceId,
+          referenceType
+        );
       }
     }
     policies = apiResult?.items ?? [];
@@ -51,7 +58,7 @@ const PolicyModal = async ({ searchParams }: FormModalProps) => {
   }
 
   return (
-    <div className="min-h-screen bg-[var(--color-background-page-bg)] py-8 px-3">
+    <div className="min-h-screen bg-[var(--color-background-page-bg)] px-3 py-8">
       <PolicyList policies={policies} queryString={queryString} />
     </div>
   );

@@ -4,7 +4,6 @@ import { useForm, FormProvider } from "react-hook-form";
 
 import CustomSelect, { CustomSelectProps } from "./Labeled.select";
 
-
 const meta: Meta<typeof CustomSelect> = {
   title: "Components/Shared/Form/CustomSelect",
   component: CustomSelect,

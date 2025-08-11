@@ -71,14 +71,14 @@ const LoginPasswordWrapper: React.FC<ILoginPasswordWrapper> = ({ email }) => {
       <form action={formAction} className="w-full">
         <input type="hidden" name="email" defaultValue={email} />
 
-        <Row className="items-center gap-[8px] lg:gap-2 mt-[6px] lg:mt-[8px]">
+        <Row className="mt-[6px] items-center gap-[8px] lg:mt-[8px] lg:gap-2">
           <CircleCard count={getFirstLetter(email)} />
           <TextElement as="h6">{email}</TextElement>
         </Row>
 
         <p
           onClick={() => router.push(PAGES_ROUTES.login)}
-          className="mt-[16px] lg:mt-[24px] font-[400] text-[14px] lg:text-[18px] cursor-pointer underline"
+          className="mt-[16px] cursor-pointer text-[14px] font-[400] underline lg:mt-[24px] lg:text-[18px]"
         >
           Use another account
         </p>
@@ -98,7 +98,7 @@ const LoginPasswordWrapper: React.FC<ILoginPasswordWrapper> = ({ email }) => {
               error ? "!mb-[8px]" : "!mb-[16px]"
             }`}
             className={`${
-              error ? "border-[#FE7A95] border-[2px] bg-white" : ""
+              error ? "border-[2px] border-[#FE7A95] bg-white" : ""
             }`}
             showErrors={false}
           />
@@ -106,7 +106,7 @@ const LoginPasswordWrapper: React.FC<ILoginPasswordWrapper> = ({ email }) => {
 
         {error && (
           <Row className="mt-[px] mb-[16px] items-center gap-[6px]">
-            <MdOutlineInfo className="text-[#FE7A95] size-[14px]" />
+            <MdOutlineInfo className="size-[14px] text-[#FE7A95]" />
             <TextElement as="h4">{error}</TextElement>
           </Row>
         )}
@@ -114,7 +114,7 @@ const LoginPasswordWrapper: React.FC<ILoginPasswordWrapper> = ({ email }) => {
         <Row className="w-full justify-end">
           <p
             onClick={handleForgotPassword}
-            className="mb-[24px] text-[#1E1F21] underline font-[400] text-[14px] lg:text-[18px] cursor-pointer"
+            className="mb-[24px] cursor-pointer text-[14px] font-[400] text-[#1E1F21] underline lg:text-[18px]"
           >
             Forgot password?
           </p>

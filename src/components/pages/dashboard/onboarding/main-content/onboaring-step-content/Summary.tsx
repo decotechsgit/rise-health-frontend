@@ -9,10 +9,10 @@ const Summary = async ({ steps }: { steps: Promise<Step[]> }) => {
   const res = await steps;
   const progress = await onboardingService.getOnboardingProgress();
   const registrationGroups = await onboardingService.getRegistrationGroups();
-  const suggestedPackages = await onboardingService.getPackagesLinkedWithSelectedGroups();
+  const suggestedPackages =
+    await onboardingService.getPackagesLinkedWithSelectedGroups();
   const selectedRegistrationIds =
     progress.progress?.registrations?.prepare_registration_select;
-
 
   let uploadedMediaIds: string[], mediaSections;
   let completedSteps: string[] | undefined = [];
@@ -29,11 +29,11 @@ const Summary = async ({ steps }: { steps: Promise<Step[]> }) => {
           .map((child) => ({
             title: item.title,
             id: child.id,
-          })),
+          }))
     );
   }
   const selectedGroups = registrationGroups.filter(
-    (item) => selectedRegistrationIds?.[item.id],
+    (item) => selectedRegistrationIds?.[item.id]
   );
   return (
     <div>
@@ -52,15 +52,12 @@ const Summary = async ({ steps }: { steps: Promise<Step[]> }) => {
         </div>
         <aside className="flex-1/3 p-4">
           <SelectedRegistrationGroups selectedGroups={selectedGroups} />
-          {mediaSections &&
-            mediaSections.length > 0 &&
+          {mediaSections && mediaSections.length > 0 && (
             <MediaSection medias={mediaSections} />
-            }
-          {
-            suggestedPackages &&
-            suggestedPackages.length > 0 &&
+          )}
+          {suggestedPackages && suggestedPackages.length > 0 && (
             <SuggestedPacks suggestedPackages={suggestedPackages} />
-          }
+          )}
         </aside>
       </section>
     </div>

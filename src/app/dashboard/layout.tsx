@@ -48,7 +48,7 @@ const DashboardLayout = function ({ children }: { children: React.ReactNode }) {
                 />
               </div>
             ) : (
-              <div className="flex justify-between mb-6 w-full overflow-x-auto overflow-y-hidden">
+              <div className="mb-6 flex w-full justify-between overflow-x-auto overflow-y-hidden">
                 <OnboardingCard title="Create Your PRODA Account" number="01" />
                 <OnboardingCard
                   title="Start Your NDIS Application"

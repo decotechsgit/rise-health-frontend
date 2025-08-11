@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import { X } from "lucide-react";
 
 import { altform } from "@/app/fonts/altform";
@@ -12,32 +12,32 @@ const AuditProviders = () => {
     {
       title: "AQCGROUP",
       value: "aqcgroup",
-      imgUrl: '/images/auditors/aqcgroup.png',
+      imgUrl: "/images/auditors/aqcgroup.png",
     },
     {
       title: "ASSURED AUDITING",
       value: "assured-auditing",
-      imgUrl: '/images/auditors/assured-auditing.png',
+      imgUrl: "/images/auditors/assured-auditing.png",
     },
     {
       title: "AUDIT WISE GROUP",
       value: "audit-wise-group",
-      imgUrl: '/images/auditors/audit-wise-group.png',
+      imgUrl: "/images/auditors/audit-wise-group.png",
     },
     {
       title: "ADDED VALUE ASSESSOR",
       value: "added-value-assessor",
-      imgUrl: '/images/auditors/added-value-assessor.png',
+      imgUrl: "/images/auditors/added-value-assessor.png",
     },
     {
       title: "CERTIFI INTERNATIONAL",
       value: "certifi-international",
-      imgUrl: '/images/auditors/certifi-international.png',
+      imgUrl: "/images/auditors/certifi-international.png",
     },
   ];
   return (
     <div className="absolute top-0 left-0 z-20 h-[100vh] w-[100%] bg-[rgba(0,0,0,0.5)] p-6">
-      <section className="absolute top-0 left-0 h-[100vh] w-full  lg:right-0 lg:left-auto lg:w-[40%] bg-[#F1F4F8]">
+      <section className="absolute top-0 left-0 h-[100vh] w-full bg-[#F1F4F8] lg:right-0 lg:left-auto lg:w-[40%]">
         <div className="flex h-[100px] items-center justify-between bg-[#E0E3E7] px-6">
           <TextElement
             className={`${altform.className} !text-[16px] !text-[#1E1F21] lg:!text-[24px]`}
@@ -47,20 +47,23 @@ const AuditProviders = () => {
           <X className="text-[#1E1F21]" />
         </div>
 
-
-        <div className="mx-auto mt-4 flex h-[80vh] w-[90%] flex-col justify-between overflow-x-hidden ">
+        <div className="mx-auto mt-4 flex h-[80vh] w-[90%] flex-col justify-between overflow-x-hidden">
           <div>
             <TextElement as="span" className={`${altform.className}`}>
               Selected auditor
             </TextElement>
             <CustomSelect
-            onSelect={(val)=>{console.log(val)}}
-            options={auditProviders}
+              onSelect={(val) => {
+                console.log(val);
+              }}
+              options={auditProviders}
             />
           </div>
 
           <StyledDatePicker
-          onDateSelect={(val)=>{console.log(val)}}
+            onDateSelect={(val) => {
+              console.log(val);
+            }}
           />
           <label htmlFor="time">
             <TextElement as="span" className={`${altform.className}`}>

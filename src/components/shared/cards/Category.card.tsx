@@ -1,5 +1,5 @@
-import Row from '../row';
-import TextElement from '../typography/TextElement.typo';
+import Row from "../row";
+import TextElement from "../typography/TextElement.typo";
 
 interface ICategoryCardProps {
   title: string;
@@ -21,7 +21,7 @@ const CategoryCard: React.FC<ICategoryCardProps> = ({
   return (
     <Row
       onClick={onClick}
-      className={`bg-orange-100 rounded-lg p-3 flex-col items-start gap-3 ${containerClassName}`}
+      className={`flex-col items-start gap-3 rounded-lg bg-orange-100 p-3 ${containerClassName}`}
     >
       <TextElement as="h3">{title}</TextElement>
 
@@ -32,7 +32,7 @@ const CategoryCard: React.FC<ICategoryCardProps> = ({
           {tags?.map((tag, index) => (
             <TextElement
               as="p"
-              className="bg-indigo-100 text-indigo-600 px-4 py-1 rounded-full"
+              className="rounded-full bg-indigo-100 px-4 py-1 text-indigo-600"
               key={index}
             >
               {tag}

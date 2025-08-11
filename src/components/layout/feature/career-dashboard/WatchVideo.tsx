@@ -1,8 +1,8 @@
-import Image from 'next/image';
-import React from 'react';
+import Image from "next/image";
+import React from "react";
 
-import Row from '@/components/shared/row';
-import TextElement from '@/components/shared/typography/TextElement.typo';
+import Row from "@/components/shared/row";
+import TextElement from "@/components/shared/typography/TextElement.typo";
 
 interface IWatchVideoProps {
   handleOnClick: () => void;
@@ -24,14 +24,14 @@ const WatchVideo: React.FC<IWatchVideoProps> = ({
         height={40}
         width={60}
         src={imgURL}
-        className="rounded-lg cursor-pointer"
+        className="cursor-pointer rounded-lg"
         onClick={handleOnClick}
       />
 
       <TextElement
         as="h3"
         onClick={handleOnClick}
-        className="cursor-pointer underline text-indigo-300"
+        className="cursor-pointer text-indigo-300 underline"
       >
         {title}
       </TextElement>

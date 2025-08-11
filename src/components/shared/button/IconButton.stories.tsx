@@ -224,7 +224,7 @@ export const WithoutIcon: Story = {
 // Multiple Buttons Layout
 export const MultipleButtons: Story = {
   render: () => (
-    <div className="flex flex-col gap-4 w-80">
+    <div className="flex w-80 flex-col gap-4">
       <IconButton
         title="Primary Action"
         Icon={FaPlus}
@@ -235,7 +235,7 @@ export const MultipleButtons: Story = {
         title="Secondary Action"
         Icon={FaEdit}
         iconColor="text-blue-600"
-        className="bg-blue-100 border-blue-300"
+        className="border-blue-300 bg-blue-100"
         btnClassName="text-blue-700"
         handleOnClick={() => console.log("Secondary clicked")}
       />
@@ -243,7 +243,7 @@ export const MultipleButtons: Story = {
         title="Danger Action"
         Icon={FaTrash}
         iconColor="text-white"
-        className="bg-red-500 border-red-500"
+        className="border-red-500 bg-red-500"
         btnClassName="text-white"
         handleOnClick={() => console.log("Danger clicked")}
       />

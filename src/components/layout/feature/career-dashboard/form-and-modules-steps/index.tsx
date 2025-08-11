@@ -1,4 +1,4 @@
-import AvailablePolicies from './AvailablePolicies';
+import AvailablePolicies from "./AvailablePolicies";
 
 const FormListing = () => {
   return <AvailablePolicies />;

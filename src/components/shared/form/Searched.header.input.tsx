@@ -35,24 +35,23 @@ interface SearchableHeaderProps {
 }
 
 const SearchableHeader = function ({
-                                     title,
-                                     titleAs = "h2",
-                                     titleClassName,
+  title,
+  titleAs = "h2",
+  titleClassName,
 
-                                     showSearch = true,
-                                     searchValue,
-                                     onSearchChange,
-                                     searchPlaceholder = "Search",
-                                     searchClassName,
+  showSearch = true,
+  searchValue,
+  onSearchChange,
+  searchPlaceholder = "Search",
+  searchClassName,
 
-                                     actions = {},
-                                     className = "flex justify-between items-center",
-                                   }: SearchableHeaderProps) {
-
-  const router = useRouter()
-  const handleSearch = (value: string) =>{
+  actions = {},
+  className = "flex justify-between items-center",
+}: SearchableHeaderProps) {
+  const router = useRouter();
+  const handleSearch = (value: string) => {
     router.push(`?s=${value}`);
-  }
+  };
 
   const {
     sort = { show: false },
@@ -66,7 +65,10 @@ const SearchableHeader = function ({
 
   return (
     <div className={`${className} flex flex-wrap gap-2`}>
-      <TextElement as={titleAs} className={`${titleClassName} ${altform.className} text-[16px] md:text-lg lg:text-xl font-semibold`}>
+      <TextElement
+        as={titleAs}
+        className={`${titleClassName} ${altform.className} text-[16px] font-semibold md:text-lg lg:text-xl`}
+      >
         {title}
       </TextElement>
 
@@ -79,8 +81,8 @@ const SearchableHeader = function ({
               value={searchValue}
               onChange={(e) => onSearchChange(e.target.value)}
               className={`${searchClassName} rounded-full border border-gray-200 px-4 py-2 focus:ring-2 focus:ring-gray-200 focus:outline-none`}
-              onKeyDown={(e)=>{
-                if(e.key === "Enter") {
+              onKeyDown={(e) => {
+                if (e.key === "Enter") {
                   e.preventDefault();
                   handleSearch(searchValue);
                 }

@@ -3,7 +3,6 @@
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 
-
 import IconButton from "@/components/shared/button";
 import Row from "@/components/shared/row";
 import TextElement from "@/components/shared/typography/TextElement.typo";

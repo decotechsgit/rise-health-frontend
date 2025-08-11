@@ -1,5 +1,5 @@
-import Row from '@/components/shared/row';
-import TextElement from '@/components/shared/typography/TextElement.typo';
+import Row from "@/components/shared/row";
+import TextElement from "@/components/shared/typography/TextElement.typo";
 
 interface IAdminNavigation {
   title: string;
@@ -19,13 +19,13 @@ const AdminNavigation: React.FC<IAdminNavigation> = ({
   return (
     <Row
       onClick={onClick}
-      className={`fontPoppins cursor-pointer gap-3 p-4 items-center  w-full hover:bg-[#fda10c11] font-medium ${
-        isSelected ? 'bg-[#fda10c11]  border-l-4 border-[#fda10c]' : '  '
+      className={`fontPoppins w-full cursor-pointer items-center gap-3 p-4 font-medium hover:bg-[#fda10c11] ${
+        isSelected ? "border-l-4 border-[#fda10c] bg-[#fda10c11]" : " "
       }`}
     >
-      <Icon size={20} className={'w-[8%]'} />
+      <Icon size={20} className={"w-[8%]"} />
 
-      <TextElement as="p" className="text-[14px] w-[70%]">
+      <TextElement as="p" className="w-[70%] text-[14px]">
         {title}
       </TextElement>
     </Row>

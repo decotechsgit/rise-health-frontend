@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 interface IReactIcon {
   Icon:
@@ -9,7 +9,7 @@ interface IReactIcon {
 }
 
 const ReactIcon: React.FC<IReactIcon> = ({ Icon, className, onClick }) => {
-  return <Icon className={` object-contain ${className}`} onClick={onClick} />;
+  return <Icon className={`object-contain ${className}`} onClick={onClick} />;
 };
 
 export default ReactIcon;

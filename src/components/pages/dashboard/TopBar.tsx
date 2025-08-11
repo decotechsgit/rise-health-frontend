@@ -52,16 +52,13 @@ const TopBar = () => {
   const [showDropdown, setShowDropdown] = useState(false);
   const [nameInitials, setNameInitials] = useState<string>("");
 
-
-
-
   useEffect(() => {
     const fetchSession = async () => {
       const username = await getUserName();
 
       if (username && username.trim()) {
         const words = username.trim().split(/\s+/);
-        let initials = '';
+        let initials = "";
         if (words.length > 1) {
           initials = `${words[0][0]}${words[1][0]}`;
         } else {
@@ -69,7 +66,7 @@ const TopBar = () => {
         }
         setNameInitials(initials.toUpperCase());
       } else {
-        setNameInitials('');
+        setNameInitials("");
       }
     };
 
@@ -96,7 +93,10 @@ const TopBar = () => {
           >
             Policy & Compliance Auditor
           </TextElement>
-          <button className="p-2" onClick={() => setShowDropdown(!showDropdown)}>
+          <button
+            className="p-2"
+            onClick={() => setShowDropdown(!showDropdown)}
+          >
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
               <path
                 d="M3 12H21M3 6H21M3 18H21"

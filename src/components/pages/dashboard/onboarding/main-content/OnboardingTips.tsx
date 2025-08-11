@@ -1,11 +1,11 @@
-'use client'
+"use client";
 import React, { useState } from "react";
 import { GoDotFill } from "react-icons/go";
 
 import { altform } from "@/app/fonts/altform";
 import TextElement from "@components/shared/typography/TextElement.typo";
 
-const OnboardingTips = ({tips}:{tips?: string[]}) =>{
+const OnboardingTips = ({ tips }: { tips?: string[] }) => {
   const [tipNumber, setTipNumber] = useState(0);
   return (
     <>
@@ -21,9 +21,7 @@ const OnboardingTips = ({tips}:{tips?: string[]}) =>{
             <div className="flex">
               {tips.map((_, index) => (
                 <GoDotFill
-                  className={
-                    `${tipNumber === index ? "text-gray-600" : "text-gray-200"} cursor-pointer`
-                  }
+                  className={`${tipNumber === index ? "text-gray-600" : "text-gray-200"} cursor-pointer`}
                   key={index}
                   onClick={() => setTipNumber(index)}
                 />
@@ -42,7 +40,7 @@ const OnboardingTips = ({tips}:{tips?: string[]}) =>{
               </TextElement>
               <TextElement
                 as="span"
-                className={`${ tipNumber + 1 < tips.length ? 'text-gray-600' : 'text-gray-400'} ${altform.className} cursor-pointer`}
+                className={`${tipNumber + 1 < tips.length ? "text-gray-600" : "text-gray-400"} ${altform.className} cursor-pointer`}
                 onClick={() =>
                   setTipNumber(
                     tipNumber + 1 < tips.length ? tipNumber + 1 : tipNumber
@@ -57,5 +55,5 @@ const OnboardingTips = ({tips}:{tips?: string[]}) =>{
       )}
     </>
   );
-}
+};
 export default OnboardingTips;

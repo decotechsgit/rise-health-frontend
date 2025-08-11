@@ -1,6 +1,6 @@
 "use client";
 import { X } from "lucide-react";
-import {  useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { Suspense } from "react";
 
 import { altform } from "@/app/fonts/altform";

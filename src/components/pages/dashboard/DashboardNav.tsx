@@ -39,17 +39,17 @@ const DashboardNav = ({ activeItem }: DashboardNavProps) => {
     if (pathname.includes(PAGES_ROUTES.dashboardForms)) {
       return "forms";
     }
-    if(pathname.includes(PAGES_ROUTES.dashboardOnboarding)) {
-      return "registration"
+    if (pathname.includes(PAGES_ROUTES.dashboardOnboarding)) {
+      return "registration";
     }
     return navItems.find((item) => item.href === pathname)?.id || "";
   };
 
   return (
-    <div className="w-full overflow-x-scroll sm:overflow-x-auto bg-gray-50 rounded-2xl">
+    <div className="w-full overflow-x-scroll rounded-2xl bg-gray-50 sm:overflow-x-auto">
       <NavBar items={navItems} activeItem={getActiveItem()} />
     </div>
-  )
+  );
 };
 
 export default DashboardNav;

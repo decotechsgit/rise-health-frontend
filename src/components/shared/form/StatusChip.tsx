@@ -23,7 +23,9 @@ const StatusChip: React.FC<StatusChipProps> = ({ text }) => {
     <span
       className={`inline-flex w-[120px] items-center justify-center rounded-full border px-5 py-1 text-[18px] font-normal ${style}`}
     >
-      <TextElement className="lg:text-[18px] font-normal">{styleKey}</TextElement>
+      <TextElement className="font-normal lg:text-[18px]">
+        {styleKey}
+      </TextElement>
     </span>
   );
 };

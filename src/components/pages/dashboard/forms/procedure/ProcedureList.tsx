@@ -23,7 +23,7 @@ const ProcedureList = ({ forms, queryString }: ProcedureListProps) => {
             href={href}
             className="flex items-center justify-between rounded-xl border border-[var(--card-border)] bg-white px-8 py-4 shadow-sm transition hover:shadow-md"
           >
-            <TextElement className="lg:text-[18px] font-[400] text-[var(--color-compliance-text-secondary)] text-wrap break-words">
+            <TextElement className="font-[400] text-wrap break-words text-[var(--color-compliance-text-secondary)] lg:text-[18px]">
               {form.title}
             </TextElement>
             <Image

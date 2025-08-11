@@ -45,14 +45,19 @@ const RegistrationGroupsTable = ({
   data: RegistrationGroup[];
   itemsPerPage?: number;
 }) => {
-  const { onboarding, setOnboarding, registrationGroupStepId, registrationGroupParentKey } =
-    useOnboarding();
+  const {
+    onboarding,
+    setOnboarding,
+    registrationGroupStepId,
+    registrationGroupParentKey,
+  } = useOnboarding();
   const [showNote, setShowNote] = useState<boolean>(false);
   const [isNoteShowedOnce, setIsNoteShowedOnce] = useState(false);
 
   const searchParams = useSearchParams();
   const stepId: string = searchParams.get("stepId") || registrationGroupStepId;
-  const parentKey: string = searchParams.get("parentKey") || registrationGroupParentKey;
+  const parentKey: string =
+    searchParams.get("parentKey") || registrationGroupParentKey;
 
   const [selectedItems, setSelectedItems] = useState(new Set<string>());
   const [searchTerm, setSearchTerm] = useState("");

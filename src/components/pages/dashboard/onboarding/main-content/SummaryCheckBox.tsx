@@ -5,27 +5,24 @@ import React from "react";
 import { altform } from "@/app/fonts/altform";
 import { useOnboarding } from "@/contexts/onboarding-context";
 
-
 type OnboardingStepTaskProps = {
   step: Step;
 };
 
-const SummaryCheckBox = ({
-                        step
-                      }: OnboardingStepTaskProps) => {
+const SummaryCheckBox = ({ step }: OnboardingStepTaskProps) => {
   const title = DOMPurify.sanitize(step.title);
 
-  const {onboarding} = useOnboarding();
+  const { onboarding } = useOnboarding();
 
-  const isChecked = onboarding?.progress?.completedSteps?.includes(step.stepKey) ?? false;
+  const isChecked =
+    onboarding?.progress?.completedSteps?.includes(step.stepKey) ?? false;
 
   return (
-    <div className="my-5 flex w-full  justify-between items-start gap-5 rounded-lg border border-gray-200 bg-white p-6">
-
+    <div className="my-5 flex w-full items-start justify-between gap-5 rounded-lg border border-gray-200 bg-white p-6">
       <div className="flex flex-col">
         <div className="flex items-center gap-4">
           <p
-            className={`lg:!text-[20px] leading-[16px] font-[400] text-[#1E1F21] md:leading-[26px] !text-14px ${altform.className}`}
+            className={`!text-14px leading-[16px] font-[400] text-[#1E1F21] md:leading-[26px] lg:!text-[20px] ${altform.className}`}
             dangerouslySetInnerHTML={{ __html: title }}
           />
           {step.checkboxTipBar && (
@@ -70,7 +67,7 @@ const SummaryCheckBox = ({
       </div>
       {/*here it begins */}
       <div className={`flex-shrink-0 pt-0.5`}>
-        <label className="flex  flex-row items-center gap-2.5 text-black">
+        <label className="flex flex-row items-center gap-2.5 text-black">
           <input
             type="checkbox"
             className="peer hidden"
@@ -81,7 +78,7 @@ const SummaryCheckBox = ({
           <div
             className={`flex h-6 w-6 items-center justify-center rounded transition ${isChecked ? "bg-[#FABA5E]" : "border-1"}`}
           >
-            { isChecked && (
+            {isChecked && (
               <svg
                 fill="none"
                 viewBox="0 0 24 24"

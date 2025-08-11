@@ -28,7 +28,7 @@ export const middleware = async (request: NextRequest) => {
   );
 
   // redirect to dashboard
-  if ((session && accessToken) &&  (pathname === "/" || isPublicRoute)) {
+  if (session && accessToken && (pathname === "/" || isPublicRoute)) {
     return NextResponse.redirect(dashboardUrl);
   }
 

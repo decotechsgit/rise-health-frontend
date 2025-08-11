@@ -13,7 +13,7 @@ const PolicyList = ({ policies, queryString }: PolicyListProps) => {
   const params = new URLSearchParams(queryString);
 
   return (
-    <div className="flex max-h-[70vh] flex-col gap-4 overflow-y-auto pb-10 sm:max-h-[80vh]  w-[100%]">
+    <div className="flex max-h-[70vh] w-[100%] flex-col gap-4 overflow-y-auto pb-10 sm:max-h-[80vh]">
       {policies.map((policy: TPolicy) => {
         params.set("policyId", policy.id);
         const href = `${PAGES_ROUTES.policyDetail(policy.id)}?${params.toString()}`;
@@ -21,11 +21,11 @@ const PolicyList = ({ policies, queryString }: PolicyListProps) => {
           <Link
             key={policy.id}
             href={href}
-            className="flex items-center justify-between gap-2 rounded-xl border border-[var(--card-border)] bg-white px-8 py-4 shadow-sm transition hover:shadow-md overflow-hidden"
+            className="flex items-center justify-between gap-2 overflow-hidden rounded-xl border border-[var(--card-border)] bg-white px-8 py-4 shadow-sm transition hover:shadow-md"
           >
             <TextElement
               as="p"
-              className="lg:text-[18px] font-[400] text-[var(--color-compliance-text-secondary)] w-[80%]  h-auto text-wrap break-words"
+              className="h-auto w-[80%] font-[400] text-wrap break-words text-[var(--color-compliance-text-secondary)] lg:text-[18px]"
             >
               {policy.title}
             </TextElement>

@@ -20,10 +20,14 @@ const FormsModule = ({ initialData, formCopies }: FormsModuleProps) => {
   const router = useRouter();
   const [search, setSearch] = useState("");
 
-  const handleFormsClick = (itemName: string, pack: TSubCategory, isParent?: boolean) => {
+  const handleFormsClick = (
+    itemName: string,
+    pack: TSubCategory,
+    isParent?: boolean
+  ) => {
     const searchParams = new URLSearchParams();
-    searchParams.set("referenceId", pack.id || "")
-    searchParams.set("referenceType", isParent ? "category" : "subCategory")
+    searchParams.set("referenceId", pack.id || "");
+    searchParams.set("referenceType", isParent ? "category" : "subCategory");
     searchParams.set("category", pack.name || "");
     searchParams.set("selected", itemName);
     searchParams.set("subcategoryId", pack.id || "");
@@ -55,7 +59,9 @@ const FormsModule = ({ initialData, formCopies }: FormsModuleProps) => {
             show: true,
           },
         }}
-        onSearchChange={(val) => {setSearch(val)}}
+        onSearchChange={(val) => {
+          setSearch(val);
+        }}
         searchPlaceholder="Search"
       />
 
@@ -65,12 +71,15 @@ const FormsModule = ({ initialData, formCopies }: FormsModuleProps) => {
           onClick={handleFormsClick}
         />
       ) : (
-        <div className={`mx-auto w-[90%] my-3`}>
+        <div className={`mx-auto my-3 w-[90%]`}>
           <TextElement as="p" className={altform.className}>
             You haven&#39;t selected any Registration Groups yet during
-            onboarding. Please go back and select at least one service to view the
-            relevant policy packs.
-            <LinkTextElement link={`${PAGES_ROUTES.onboardingRegistration}`} className='mx-2'>
+            onboarding. Please go back and select at least one service to view
+            the relevant policy packs.
+            <LinkTextElement
+              link={`${PAGES_ROUTES.onboardingRegistration}`}
+              className="mx-2"
+            >
               Go Back to Select Registration Groups
             </LinkTextElement>
           </TextElement>

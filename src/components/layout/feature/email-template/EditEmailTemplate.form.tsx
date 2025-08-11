@@ -48,7 +48,7 @@ const EditEmailTemplateForm = ({
   };
 
   return (
-    <Row className="w-full flex-col gap-4 p-8 items-end">
+    <Row className="w-full flex-col items-end gap-4 p-8">
       <TextElement as="h1">Edit Email template</TextElement>
       <Row className="w-full flex-col gap-2">
         {[
@@ -89,17 +89,17 @@ const EditEmailTemplateForm = ({
         />
       </Row>
 
-      <Row className="w-full items-center gap-2 cursor-default">
+      <Row className="w-full cursor-default items-center gap-2">
         <TextElement as="p">{templateData.group}</TextElement>
 
         {templateData.isSystemDefault && (
-          <TextElement as="p" className="bg-indigo-200  rounded-md  px-2 py-1">
+          <TextElement as="p" className="rounded-md bg-indigo-200 px-2 py-1">
             System Generated
           </TextElement>
         )}
 
         {templateData.archived && (
-          <TextElement as="p" className="bg-red-200  rounded-md  px-2 py-1">
+          <TextElement as="p" className="rounded-md bg-red-200 px-2 py-1">
             Not In Used
           </TextElement>
         )}

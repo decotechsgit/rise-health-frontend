@@ -31,8 +31,7 @@ const SetPasswordClientWrapper = ({
   const [isProcessing, setIsProcessing] = useState<boolean>(false);
   const [timer, setTimer] = useState<number>(10);
 
-
-   const {
+  const {
     register,
     handleSubmit,
     watch,
@@ -69,8 +68,6 @@ const SetPasswordClientWrapper = ({
       </>
     );
   }
-
- 
 
   const passwordValue = watch("password");
   const passwordStrength = passwordValue ? zxcvbn(passwordValue).score : 0;
@@ -113,10 +110,10 @@ const SetPasswordClientWrapper = ({
   return (
     <>
       <TextElement as="h1">Create your password</TextElement>
-      <Row className="items-center gap-[8px] lg:gap-2 mt-[6px] md:mt-[8px]">
+      <Row className="mt-[6px] items-center gap-[8px] md:mt-[8px] lg:gap-2">
         <CircleCard
           count={getFirstLetter(email || "")}
-          className="size-[28px] lg:size-[34px] !bg-[#00CDA6]"
+          className="size-[28px] !bg-[#00CDA6] lg:size-[34px]"
         />
         <TextElement as="h6">{email}</TextElement>
       </Row>
@@ -163,7 +160,7 @@ const SetPasswordClientWrapper = ({
       {passwordValue && (
         <>
           {/* Strength bar */}
-          <div className="w-full mt-[24px] flex items-center gap-[8px]">
+          <div className="mt-[24px] flex w-full items-center gap-[8px]">
             {[0, 1, 2, 3, 4].map((i) => (
               <div
                 key={i}
@@ -184,27 +181,27 @@ const SetPasswordClientWrapper = ({
 
           <TextElement
             as="h5"
-            className="text-right mt-[8px] !font-[600]"
+            className="mt-[8px] text-right !font-[600]"
           >{`${getStrengthText(passwordStrength)}`}</TextElement>
 
           <TextElement
             as="h5"
-            className="text-[14px] lg:text-[18px] !font-[400] my-[16px]"
+            className="my-[16px] text-[14px] !font-[400] lg:text-[18px]"
           >
             Must contain at least:
           </TextElement>
 
-          <ul className="w-full flex flex-col gap-[6px] lg:gap-[8px]">
+          <ul className="flex w-full flex-col gap-[6px] lg:gap-[8px]">
             {rulesChecklist.map((rule) => (
               <li
                 key={rule.label}
-                className={`flex items-center gap-[6px] lg:gap-[8px] text-[14px] lg:text-[18px] ${
+                className={`flex items-center gap-[6px] text-[14px] lg:gap-[8px] lg:text-[18px] ${
                   rule.passed ? "text-[#1E1F21]" : ""
                 }`}
               >
-                <span className=" text-[#525558] ">
+                <span className="text-[#525558]">
                   {rule.passed ? (
-                    <FaCheckCircle className="text-[#2D2F32] size-[20px]" />
+                    <FaCheckCircle className="size-[20px] text-[#2D2F32]" />
                   ) : (
                     <FaRegCircle className="size-[20px]" />
                   )}
@@ -218,8 +215,8 @@ const SetPasswordClientWrapper = ({
 
       <IconButton
         title="Create Password"
-        className={`w-full  ${
-          passwordValue ? "!mt-[24px]" : "!mt-[30px] !lg:mt-[94px]"
+        className={`w-full ${
+          passwordValue ? "!mt-[24px]" : "!lg:mt-[94px] !mt-[30px]"
         }`}
         disabled={isProcessing}
         handleOnClick={handleSubmit(onSubmit)}

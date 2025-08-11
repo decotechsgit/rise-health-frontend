@@ -31,7 +31,6 @@ const SidebarItem = ({
     onboarding?.progress?.completedSteps?.includes(step.stepKey) ?? false;
   const title = DOMPurify.sanitize(step.title);
 
-
   return (
     <div key={step.stepKey} className="relative mx-auto w-full">
       <div className="flex w-full justify-between py-4 pt-0">

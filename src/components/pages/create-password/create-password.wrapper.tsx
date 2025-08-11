@@ -21,7 +21,6 @@ import {
 
 import { getFirstLetter } from "@/lib/utils";
 
-
 interface ICreatePasswordWrapper {
   email: string;
   otp: string;
@@ -66,60 +65,60 @@ const CreatePasswordWrapper = ({ email, otp }: ICreatePasswordWrapper) => {
         <input type="hidden" name="email" value={email} />
         <input type="hidden" name="otp" value={otp} />
 
-        <Row className="items-center gap-2 mt-[6px] lg:mt-[8px]">
+        <Row className="mt-[6px] items-center gap-2 lg:mt-[8px]">
           <CircleCard count={getFirstLetter(email)} />
           <TextElement as="h6">{email}</TextElement>
         </Row>
 
-        <Row className="flex-col w-full mt-[30px] lg:mt-[40px]">
+        <Row className="mt-[30px] w-full flex-col lg:mt-[40px]">
           {[fullNameField, passwordField].map((item) => (
-           <>
-             <LabeledInput
-               key={item.name}
-               name={item.name}
-               label={item.label}
-               register={register}
-               placeHolder={item.placeHolder}
-               type={item.type}
-               defaultValue={state?.fieldValues?.[item.name] || ""}
-               validationRules={item.rules}
-               containerClassName={`!mb-0 ${
-                 item.name === "password"
-                   ? "lg:mt-[24px] xl:mt-[24px] md:mt-[24px] sm:mt-[20px] mt-[20px]"
-                   : ""
-               }`}
-               className={
-                 item.name === "fullName" && userNameValue?.length > 5
-                   ? "!border-green-400 !bg-white focus:outline-[#00CDA6]"
-                   : ""
-               }
-               showErrors={item.showErrors}
-             />
-             {fieldErrors && fieldErrors?.[item.name] && (
-               <Row className="mt-[8px] mb-[16px] items-center gap-[6px]">
-                 <MdOutlineInfo className="text-[#FE7A95] size-[14px]" />
-                 <TextElement as="h4">{fieldErrors[item.name]}</TextElement>
-               </Row>
-             )}
-           </>
+            <>
+              <LabeledInput
+                key={item.name}
+                name={item.name}
+                label={item.label}
+                register={register}
+                placeHolder={item.placeHolder}
+                type={item.type}
+                defaultValue={state?.fieldValues?.[item.name] || ""}
+                validationRules={item.rules}
+                containerClassName={`!mb-0 ${
+                  item.name === "password"
+                    ? "lg:mt-[24px] xl:mt-[24px] md:mt-[24px] sm:mt-[20px] mt-[20px]"
+                    : ""
+                }`}
+                className={
+                  item.name === "fullName" && userNameValue?.length > 5
+                    ? "!border-green-400 !bg-white focus:outline-[#00CDA6]"
+                    : ""
+                }
+                showErrors={item.showErrors}
+              />
+              {fieldErrors && fieldErrors?.[item.name] && (
+                <Row className="mt-[8px] mb-[16px] items-center gap-[6px]">
+                  <MdOutlineInfo className="size-[14px] text-[#FE7A95]" />
+                  <TextElement as="h4">{fieldErrors[item.name]}</TextElement>
+                </Row>
+              )}
+            </>
           ))}
 
           {passwordValue && (
             <>
               {/* Strength bar */}
-              <div className="w-full mt-[24px] flex items-center gap-[8px]">
+              <div className="mt-[24px] flex w-full items-center gap-[8px]">
                 {[0, 1, 2, 3, 4].map((i) => (
                   <div
                     key={i}
                     className={`h-[8px] flex-1 rounded-[20px] transition-all duration-300 ${
                       i <= passwordStrength
                         ? [
-                          "bg-[#FE7A95]",
-                          "bg-[#F59432]",
-                          "bg-[#F9C85F]",
-                          "bg-[#00CDA6]",
-                          "bg-[#00CDA6]",
-                        ][passwordStrength]
+                            "bg-[#FE7A95]",
+                            "bg-[#F59432]",
+                            "bg-[#F9C85F]",
+                            "bg-[#00CDA6]",
+                            "bg-[#00CDA6]",
+                          ][passwordStrength]
                         : "bg-[#C7CACE]"
                     }`}
                   />
@@ -128,14 +127,14 @@ const CreatePasswordWrapper = ({ email, otp }: ICreatePasswordWrapper) => {
 
               <TextElement
                 as="h5"
-                className="text-right mt-[8px]"
+                className="mt-[8px] text-right"
               >{`${getStrengthText(passwordStrength)}`}</TextElement>
 
               {/* Checklist */}
 
               <TextElement
                 as="h5"
-                className="text-[14px] lg:text-[18px] !font-[400] my-[16px]"
+                className="my-[16px] text-[14px] !font-[400] lg:text-[18px]"
               >
                 Must contain at least:
               </TextElement>
@@ -144,22 +143,20 @@ const CreatePasswordWrapper = ({ email, otp }: ICreatePasswordWrapper) => {
                 {rulesChecklist.map((rule) => (
                   <li
                     key={rule.label}
-                    className={`flex items-center gap-[6px] lg:gap-[8px] text-[14px] lg:text-[18px] ${
+                    className={`flex items-center gap-[6px] text-[14px] lg:gap-[8px] lg:text-[18px] ${
                       rule.passed ? "text-[#1E1F21]" : ""
                     }`}
                   >
-                    <span className=" text-[#1E1F21]">
+                    <span className="text-[#1E1F21]">
                       {rule.passed ? (
-                        <FaCheckCircle className="text-[#2D2F32] size-[20px]" />
+                        <FaCheckCircle className="size-[20px] text-[#2D2F32]" />
                       ) : (
-                        <FaRegCircle className="text-[#525558] size-[20px]" />
+                        <FaRegCircle className="size-[20px] text-[#525558]" />
                       )}
                     </span>
 
                     <span
-                      className={`text-[14px] lg:text-[18px] font-[400]
-                      ${rule.passed ? "text-[#1E1F21] " : "text-[#525558]"}
-                      `}
+                      className={`text-[14px] font-[400] lg:text-[18px] ${rule.passed ? "text-[#1E1F21]" : "text-[#525558]"} `}
                     >
                       {rule.label}
                     </span>
@@ -173,14 +170,13 @@ const CreatePasswordWrapper = ({ email, otp }: ICreatePasswordWrapper) => {
         <IconButton
           title="Create Account"
           type="submit"
-          className="w-full mt-[20px] sm:mt-[30px] md:mt-[40px] lg:mt-[40px] xl:mt-[40px]"
+          className="mt-[20px] w-full sm:mt-[30px] md:mt-[40px] lg:mt-[40px] xl:mt-[40px]"
           disabled={isProcessing}
           isLoading={isProcessing}
         />
       </form>
     </>
-  )
-    ;
+  );
 };
 
 export default CreatePasswordWrapper;

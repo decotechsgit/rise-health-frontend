@@ -1,10 +1,10 @@
-import React, { useRef } from 'react';
-import { IoMdCloudUpload } from 'react-icons/io';
-import { MdDelete } from 'react-icons/md';
+import React, { useRef } from "react";
+import { IoMdCloudUpload } from "react-icons/io";
+import { MdDelete } from "react-icons/md";
 
-import IconButton from '../button';
-import Row from '../row';
-import TextElement from '../typography/TextElement.typo';
+import IconButton from "../button";
+import Row from "../row";
+import TextElement from "../typography/TextElement.typo";
 
 interface FileUploadProps {
   uploadedFiles: File[];
@@ -26,10 +26,10 @@ const FileUpload: React.FC<FileUploadProps> = ({
   onDeleteClick,
   onUploadClick,
   onError,
-  acceptedFileTypes = 'JPEG, PNG, PDF, Text, Excel, Word',
+  acceptedFileTypes = "JPEG, PNG, PDF, Text, Excel, Word",
   maxFileSizeMB = 40,
-  containerClassName = 'w-[20%]',
-  heading = 'Drag & Drop files or',
+  containerClassName = "w-[20%]",
+  heading = "Drag & Drop files or",
   description,
   maxFiles,
 }) => {
@@ -40,11 +40,11 @@ const FileUpload: React.FC<FileUploadProps> = ({
     if (files && files.length > 0) {
       const selectedFiles = Array.from(files);
 
-      const newFiles = selectedFiles.filter(file => {
+      const newFiles = selectedFiles.filter((file) => {
         const fileSizeMB = file.size / (1024 * 1024);
         const isValidSize = fileSizeMB <= maxFileSizeMB;
         const isDuplicate = uploadedFiles.some(
-          existing => existing.name === file.name,
+          (existing) => existing.name === file.name
         );
 
         if (!isValidSize && onError) {
@@ -64,13 +64,13 @@ const FileUpload: React.FC<FileUploadProps> = ({
     }
 
     if (fileInputRef.current) {
-      fileInputRef.current.value = '';
+      fileInputRef.current.value = "";
     }
   };
 
   return (
     <Row
-      className={`bg-orange-100 py-8 px-4 rounded-lg border border-dashed border-green-400 flex-col gap-2 justify-center items-center ${containerClassName}`}
+      className={`flex-col items-center justify-center gap-2 rounded-lg border border-dashed border-green-400 bg-orange-100 px-4 py-8 ${containerClassName}`}
     >
       <input
         ref={fileInputRef}
@@ -81,7 +81,7 @@ const FileUpload: React.FC<FileUploadProps> = ({
       />
 
       <IoMdCloudUpload
-        className="text-green-600 size-32 cursor-pointer"
+        className="size-32 cursor-pointer text-green-600"
         onClick={() => fileInputRef.current?.click()}
       />
 
@@ -90,7 +90,7 @@ const FileUpload: React.FC<FileUploadProps> = ({
 
         <TextElement
           as="h3"
-          className="text-green-600 underline cursor-pointer"
+          className="cursor-pointer text-green-600 underline"
           onClick={() => fileInputRef.current?.click()}
         >
           Browse
@@ -105,22 +105,22 @@ const FileUpload: React.FC<FileUploadProps> = ({
       {uploadedFiles.length > 0 && (
         <TextElement
           as="p"
-          className="text-start w-full mt-2"
-        >{`Uploaded ${uploadedFiles.length}${maxFiles ? `/${maxFiles}` : ''} file${uploadedFiles.length > 1 ? 's' : ''}`}</TextElement>
+          className="mt-2 w-full text-start"
+        >{`Uploaded ${uploadedFiles.length}${maxFiles ? `/${maxFiles}` : ""} file${uploadedFiles.length > 1 ? "s" : ""}`}</TextElement>
       )}
 
       {uploadedFiles.map((file, index) => (
         <Row
           key={index}
-          className="items-center justify-between p-1 rounded-md bg-white w-full border border-indigo-300"
+          className="w-full items-center justify-between rounded-md border border-indigo-300 bg-white p-1"
         >
           <TextElement as="p" className="line-clamp-1">
             {file.name}
           </TextElement>
 
-          <div className="bg-slate-100 rounded-full flex justify-center items-center size-6">
+          <div className="flex size-6 items-center justify-center rounded-full bg-slate-100">
             <MdDelete
-              className="text-red-500 size-4 cursor-pointer"
+              className="size-4 cursor-pointer text-red-500"
               onClick={() => onDeleteClick?.(file.name)}
             />
           </div>
@@ -130,7 +130,7 @@ const FileUpload: React.FC<FileUploadProps> = ({
       {uploadedFiles?.length > 0 && (
         <IconButton
           title="Upload Documents"
-          className="bg-orange-400 py-1 w-full"
+          className="w-full bg-orange-400 py-1"
           btnClassName="text-center w-full"
           handleOnClick={onUploadClick}
         />

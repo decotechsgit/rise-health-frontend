@@ -32,7 +32,7 @@ const SectionFieldList = ({
   return (
     <div className="scrollbar-none flex max-h-[80vh] w-full min-w-0 flex-1 flex-col overflow-y-auto">
       {/* Header */}
-      <div className="m-0 flex w-full items-center justify-between p-0 ">
+      <div className="m-0 flex w-full items-center justify-between p-0">
         <TextElement className="text-[16px] font-[600] tracking-[0%] text-[var(--primary-text)]">
           Content
         </TextElement>
@@ -83,7 +83,7 @@ const SectionFieldList = ({
             } else {
               return (
                 <TextElement
-                  className="mb-2 cursor-pointer text-base  text-[16px] font-[400] text-[var(--primary-text)]"
+                  className="mb-2 cursor-pointer text-base text-[16px] font-[400] text-[var(--primary-text)]"
                   onClick={() => {
                     if (setInputValue && setEditingSection) {
                       setInputValue(section);
@@ -111,12 +111,12 @@ const SectionFieldList = ({
                 }}
               >
                 <TextElement
-                  className="w-full overflow-hidden text-[14px] sm:text-[16px] font-[600] text-ellipsis whitespace-nowrap text-[var(--primary-text)]"
+                  className="w-full overflow-hidden text-[14px] font-[600] text-ellipsis whitespace-nowrap text-[var(--primary-text)] sm:text-[16px]"
                   title={field.label}
                 >
                   {field.label}
                 </TextElement>
-                <TextElement className="text-[14px] sm:text-[16px] font-[400] text-[var(--primary-text)]">
+                <TextElement className="text-[14px] font-[400] text-[var(--primary-text)] sm:text-[16px]">
                   {field.placeholder || "Placeholder"}
                 </TextElement>
               </div>
@@ -129,7 +129,7 @@ const SectionFieldList = ({
             }}
           >
             <span className="text-xl">+</span>
-            <TextElement className="text-[14px] sm:text-[16px] font-[400] text-[var(--primary-text)] underline">
+            <TextElement className="text-[14px] font-[400] text-[var(--primary-text)] underline sm:text-[16px]">
               Add question
             </TextElement>
           </button>

@@ -4,14 +4,14 @@ import TextElement from "@components/shared/typography/TextElement.typo";
 
 type SuggestedPacksProps = {
   suggestedPackages: SuggestedPackage[];
-}
+};
 
-const SuggestedPacks = ({ suggestedPackages }:SuggestedPacksProps) => {
+const SuggestedPacks = ({ suggestedPackages }: SuggestedPacksProps) => {
   return (
     <div className="p-2">
       <TextElement
         as="h2"
-        className={`${altform.className} mb-2 !text-[18px] md:!text-[20px] !font-normal flex gap-4 items-center justify-between`}
+        className={`${altform.className} mb-2 flex items-center justify-between gap-4 !text-[18px] !font-normal md:!text-[20px]`}
       >
         Suggested Package(s)
       </TextElement>
@@ -19,7 +19,7 @@ const SuggestedPacks = ({ suggestedPackages }:SuggestedPacksProps) => {
         {suggestedPackages.map((item) => (
           <li
             key={item.name}
-            className="text-sm py-1 text-[#717171] md:text-lg lg:text-xl"
+            className="py-1 text-sm text-[#717171] md:text-lg lg:text-xl"
           >
             {item.name}
           </li>
@@ -28,9 +28,13 @@ const SuggestedPacks = ({ suggestedPackages }:SuggestedPacksProps) => {
 
       <TextElement
         as="h2"
-        className={`${altform.className} my-8 !text-[16px] md:!text-[18px] !font-normal`}
+        className={`${altform.className} my-8 !text-[16px] !font-normal md:!text-[18px]`}
       >
-        For any questions, contact us at <LinkTextElement link="mailto:riseosau@gmail.com">riseosau@gmail.com</LinkTextElement> — we&#39;re here to help.
+        For any questions, contact us at{" "}
+        <LinkTextElement link="mailto:riseosau@gmail.com">
+          riseosau@gmail.com
+        </LinkTextElement>{" "}
+        — we&#39;re here to help.
       </TextElement>
     </div>
   );

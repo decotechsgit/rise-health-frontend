@@ -43,14 +43,12 @@ const OnboardingActions = ({
   const isStepAlreadyCompleted =
     onboarding?.progress?.completedSteps?.includes(stepKey) ?? false;
 
-
   useEffect(() => {
     setOnboarding({
       ...onboarding,
       currentStepKey: stepKey,
     });
-  },[stepKey])
-
+  }, [stepKey]);
 
   const markAsComplete = async () => {
     if (isStepAlreadyCompleted) {
@@ -78,9 +76,9 @@ const OnboardingActions = ({
 
     const stepChildIds =
       onboardingStep?.children?.flatMap((item) => {
-        if(item.type === "registration_list") hasGroupItem = true;
-        else if(item.type === "file_upload") hasFileItem = true;
-        return [item.id]
+        if (item.type === "registration_list") hasGroupItem = true;
+        else if (item.type === "file_upload") hasFileItem = true;
+        return [item.id];
       }) ?? [];
 
     const allCheckboxes = onboarding?.progress?.checkboxes;
@@ -88,17 +86,17 @@ const OnboardingActions = ({
       (id) => allCheckboxes && allCheckboxes[id]
     );
 
-
-
     if (!areAllCheckboxesTicked) {
-
       let toastMessage = "Please complete all steps before proceeding";
-      if(hasFileItem && hasGroupItem) {
-        toastMessage = "Please complete all steps, select at least one registration group, and upload at least one file before proceeding.";
-      }else if(hasFileItem) {
-        toastMessage = "Please complete all steps, and upload at least one file before proceeding.";
-      }else if(hasGroupItem){
-        toastMessage = "Please complete all steps, and select at least one registration group before proceeding.";
+      if (hasFileItem && hasGroupItem) {
+        toastMessage =
+          "Please complete all steps, select at least one registration group, and upload at least one file before proceeding.";
+      } else if (hasFileItem) {
+        toastMessage =
+          "Please complete all steps, and upload at least one file before proceeding.";
+      } else if (hasGroupItem) {
+        toastMessage =
+          "Please complete all steps, and select at least one registration group before proceeding.";
       }
       setToast({
         ...toast,
@@ -137,20 +135,20 @@ const OnboardingActions = ({
           title={mobileScreen ? "" : "Previous Step"}
           Icon={mobileScreen ? ChevronLeft : undefined}
           iconColor={"text-black"}
-          className={
-            `text-nowrap ${mobileScreen ? "!bg-[#F8F8F8] border-none  !p-0 !w-[15%]" : "mx-4 !rounded border-[#F59432] bg-[#F59432] p-2 !py-6 " }`
-          }
+          className={`text-nowrap ${mobileScreen ? "!w-[15%] border-none !bg-[#F8F8F8] !p-0" : "mx-4 !rounded border-[#F59432] bg-[#F59432] p-2 !py-6"}`}
           btnClassName={`lg:!text-[16px] text-white text-nowrap ${altform.className}`}
           handleOnClick={() => {
             if (currentStepIndex !== 0) {
-              router.push(`${PAGES_ROUTES.dashboardOnboarding}?step=${steps.at(currentStepIndex - 1)}`);
+              router.push(
+                `${PAGES_ROUTES.dashboardOnboarding}?step=${steps.at(currentStepIndex - 1)}`
+              );
             }
           }}
         />
       )}
       <Button
         title={"Mark as complete"}
-        className={`mx-2 lg:mx-4 !rounded !border-[#A3A3A3] p-1 py-3 lg:p-3 lg:!py-6 text-wrap lg:text-nowrap ${isStepAlreadyCompleted ? "border-none bg-[#F59432]" : "bg-white"} ${mobileScreen && "!w-[50%]"}`}
+        className={`mx-2 !rounded !border-[#A3A3A3] p-1 py-3 text-wrap lg:mx-4 lg:p-3 lg:!py-6 lg:text-nowrap ${isStepAlreadyCompleted ? "border-none bg-[#F59432]" : "bg-white"} ${mobileScreen && "!w-[50%]"}`}
         btnClassName={`!text-[12px] sm:!text-[16px] text-nowrap ${altform.className} ${isStepAlreadyCompleted && "!text-white"}`}
         handleOnClick={markAsComplete}
         isLoading={loading}
@@ -159,7 +157,7 @@ const OnboardingActions = ({
         <>
           <Button
             title={"Summary"}
-            className={`mx-2 lg:mx-4 !rounded border-[#F59432] bg-[#F59432] p-1 py-3 lg:p-3 lg:!py-6 text-nowrap ${mobileScreen && "!w-[30%] !mx-0"}`}
+            className={`mx-2 !rounded border-[#F59432] bg-[#F59432] p-1 py-3 text-nowrap lg:mx-4 lg:p-3 lg:!py-6 ${mobileScreen && "!mx-0 !w-[30%]"}`}
             btnClassName={`!text-[12px] sm:!text-[16px] text-white text-nowrap ${altform.className}`}
             handleOnClick={() => {
               router.push(PAGES_ROUTES.onboardingSummary);
@@ -171,12 +169,12 @@ const OnboardingActions = ({
           title={mobileScreen ? "" : "Next Step"}
           Icon={mobileScreen ? ChevronRight : undefined}
           iconColor={"text-black"}
-          className={
-            `text-nowrap ${mobileScreen ? "!bg-[#F8F8F8] border-none  !p-0 !w-[15%]" : "mx-4 !rounded border-[#F59432] bg-[#F59432] p-2 !py-6 " }`
-          }
+          className={`text-nowrap ${mobileScreen ? "!w-[15%] border-none !bg-[#F8F8F8] !p-0" : "mx-4 !rounded border-[#F59432] bg-[#F59432] p-2 !py-6"}`}
           btnClassName={`lg:!text-[16px] text-white text-nowrap ${altform.className}`}
           handleOnClick={() => {
-             router.push(`${PAGES_ROUTES.dashboardOnboarding}?step=${steps.at(currentStepIndex + 1)}`);
+            router.push(
+              `${PAGES_ROUTES.dashboardOnboarding}?step=${steps.at(currentStepIndex + 1)}`
+            );
           }}
         />
       )}

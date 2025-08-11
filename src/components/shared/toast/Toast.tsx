@@ -121,7 +121,11 @@ const Toast = ({ message, type, onClose }: ToastProps) => {
         <div className="inline-flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg">
           {icon}
         </div>
-        <div className={`ms-3 text-sm font-normal ${text} ${altform.className}`}>{message}</div>
+        <div
+          className={`ms-3 text-sm font-normal ${text} ${altform.className}`}
+        >
+          {message}
+        </div>
       </div>
       <button
         type="button"

@@ -48,24 +48,27 @@ const CategoryList = function ({
             : i % 2 === 0
               ? "white"
               : "grey";
-        const borderColor = currentBgColor === "white"
-          ? "#c7cace"
-          : "#ffffff"
-        const childBottomBorder = `${(level > 1 && i === (categories.length - 1) && !isExpanded) ? `solid 2px ${borderColor}` : 'none'}`;
-        const parentBottomBorder = `${(level === 1 && i === (categories.length - 1) && !isExpanded) ? `solid 2px ${borderColor}` : 'none'}`;
-        const childLeftPadding = level === 0 ? 16 : level === 1 ? 60 : level === 2 ? 104 : level * 50;
+        const borderColor = currentBgColor === "white" ? "#c7cace" : "#ffffff";
+        const childBottomBorder = `${level > 1 && i === categories.length - 1 && !isExpanded ? `solid 2px ${borderColor}` : "none"}`;
+        const parentBottomBorder = `${level === 1 && i === categories.length - 1 && !isExpanded ? `solid 2px ${borderColor}` : "none"}`;
+        const childLeftPadding =
+          level === 0 ? 16 : level === 1 ? 60 : level === 2 ? 104 : level * 50;
         const parentLeftPadding = hasChildren ? 16 : 58;
         const isParent = level === 0 ? true : false;
         return (
           <div key={item.id}>
             <div
-              className={`hover:bg-compliance-background-hover flex flex-wrap md:flex-nowrap items-center justify-between px-4 py-3 transition-colors ${currentBgColor === "white"
-                ? "bg-white"
-                : "bg-compliance-subcategory-grey"
-                }`}
+              className={`hover:bg-compliance-background-hover flex flex-wrap items-center justify-between px-4 py-3 transition-colors md:flex-nowrap ${
+                currentBgColor === "white"
+                  ? "bg-white"
+                  : "bg-compliance-subcategory-grey"
+              }`}
               style={{
-                paddingLeft: isParent ? `${parentLeftPadding}px` : `${childLeftPadding}px`,
-                borderBottom: level === 1 ? parentBottomBorder : childBottomBorder
+                paddingLeft: isParent
+                  ? `${parentLeftPadding}px`
+                  : `${childLeftPadding}px`,
+                borderBottom:
+                  level === 1 ? parentBottomBorder : childBottomBorder,
               }}
             >
               <div
@@ -74,12 +77,12 @@ const CategoryList = function ({
               >
                 {hasChildren && (
                   <span
-                    className="mr-2 transition-transform duration-200 select-none rounded-full"
+                    className="mr-2 rounded-full transition-transform duration-200 select-none"
                     style={{
                       display: "flex",
                       alignItems: "center",
                       transform: isExpanded ? "rotate(90deg)" : "rotate(0deg)",
-                      backgroundColor: isExpanded ? "#c7cace" : 'transparent',
+                      backgroundColor: isExpanded ? "#c7cace" : "transparent",
                     }}
                   >
                     <Image
@@ -90,14 +93,18 @@ const CategoryList = function ({
                     />
                   </span>
                 )}
-                <TextElement className="text-[12px] md:text-[16px] lg:text-[18px] font-[400] text-[var(--color-compliance-text-secondary)]">
+                <TextElement className="text-[12px] font-[400] text-[var(--color-compliance-text-secondary)] md:text-[16px] lg:text-[18px]">
                   {currentIndex} {item.name}
                 </TextElement>
               </div>
-              <div className={`flex gap-4 justify-between md:justify-end md:my-0 w-full ${"legislationLinks" in item && item.legislationLinks ? "mt-2" : ""}`}>
+              <div
+                className={`flex w-full justify-between gap-4 md:my-0 md:justify-end ${"legislationLinks" in item && item.legislationLinks ? "mt-2" : ""}`}
+              >
                 {"legislationLinks" in item && item.legislationLinks && (
                   <button
-                    onClick={() => onClick("Legislation", item as TSubCategory, isParent)}
+                    onClick={() =>
+                      onClick("Legislation", item as TSubCategory, isParent)
+                    }
                     className="text-compliance-text-secondary cursor-pointer underline transition-colors hover:text-blue-600"
                   >
                     <TextElement className="cursor-pointer whitespace-nowrap transition-colors hover:text-blue-600">
@@ -108,7 +115,11 @@ const CategoryList = function ({
                 {"policies" in item && item.policies && (
                   <button
                     onClick={() =>
-                      onClick("Policies & Procedures", item as TSubCategory, isParent)
+                      onClick(
+                        "Policies & Procedures",
+                        item as TSubCategory,
+                        isParent
+                      )
                     }
                     className="text-compliance-text-secondary cursor-pointer underline transition-colors hover:text-blue-600"
                   >
@@ -119,7 +130,9 @@ const CategoryList = function ({
                 )}
                 {"forms" in item && item.forms && (
                   <button
-                    onClick={() => onClick("Forms", item as TSubCategory, isParent)}
+                    onClick={() =>
+                      onClick("Forms", item as TSubCategory, isParent)
+                    }
                     className="text-compliance-text-secondary cursor-pointer underline transition-colors hover:text-blue-600"
                   >
                     <TextElement className="cursor-pointer whitespace-nowrap transition-colors hover:text-blue-600">

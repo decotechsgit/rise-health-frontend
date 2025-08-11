@@ -4,7 +4,6 @@ import { useForm, FormProvider } from "react-hook-form";
 
 import LabeledCheckbox, { IProps } from "./LabeledCheckBox.input";
 
-
 const meta: Meta<typeof LabeledCheckbox> = {
   title: "Components/Shared/Form/LabeledCheckbox",
   component: LabeledCheckbox,

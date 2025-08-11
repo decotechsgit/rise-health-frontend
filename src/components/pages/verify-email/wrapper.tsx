@@ -200,7 +200,7 @@ const VerifyEmailWrapper: React.FC<IVerifyEmailWrapper> = ({
   return (
     <>
       <TextElement as="h1">Verify your email</TextElement>
-      <TextElement as="h3" className="mt-[8px] ">
+      <TextElement as="h3" className="mt-[8px]">
         To complete your account setup, enter the code we&rsquo;ve sent to :
       </TextElement>
 
@@ -208,7 +208,7 @@ const VerifyEmailWrapper: React.FC<IVerifyEmailWrapper> = ({
         {userEmail}
       </TextElement>
 
-      <Row className="gap-[14px] lg:gap-[18px] xl:gap-[24px] items-center my-[30px] lg:my-[40px]">
+      <Row className="my-[30px] items-center gap-[14px] lg:my-[40px] lg:gap-[18px] xl:gap-[24px]">
         {formFields?.map((field, index) => (
           <RoundedInput
             key={index}
@@ -218,9 +218,9 @@ const VerifyEmailWrapper: React.FC<IVerifyEmailWrapper> = ({
             rules={field.rules}
             type={field.type}
             className={`text-black ${
-              errorMessage !== null ? "!border-[#FE7A95] border-[2px]" : ""
+              errorMessage !== null ? "border-[2px] !border-[#FE7A95]" : ""
             } ${
-              borderGreen ? "!border-[#00CDA6] border-[2px] !bg-white" : ""
+              borderGreen ? "border-[2px] !border-[#00CDA6] !bg-white" : ""
             } ${watch(field.name) ? "bg-white" : ""}`}
             inputRef={inputRefs[index] as React.RefObject<HTMLInputElement>}
             onKeyDown={(e) => handleKeyDown(index, e)}
@@ -231,8 +231,8 @@ const VerifyEmailWrapper: React.FC<IVerifyEmailWrapper> = ({
       </Row>
 
       {errorMessage && (
-        <Row className="mt-[-24px] lg:mt-[-36px] mb-[20px] lg:mb-[40px] items-center gap-[6px]">
-          <MdOutlineInfo className="text-[#FE7A95] size-[12px] lg:size-[14px]" />
+        <Row className="mt-[-24px] mb-[20px] items-center gap-[6px] lg:mt-[-36px] lg:mb-[40px]">
+          <MdOutlineInfo className="size-[12px] text-[#FE7A95] lg:size-[14px]" />
 
           <TextElement as="h4">{errorMessage}</TextElement>
         </Row>
@@ -241,17 +241,17 @@ const VerifyEmailWrapper: React.FC<IVerifyEmailWrapper> = ({
       {resendTimer > 0 && runTimer ? (
         <TextElement
           as="span"
-          className="text-[14px] lg:text-[18px] text-[#525558]"
+          className="text-[14px] text-[#525558] lg:text-[18px]"
         >{`Resend in ${resendTimer}s`}</TextElement>
       ) : (
         <TextElement
           as="p"
-          className="text-[#525558] text-[14px] lg:text-[18px]"
+          className="text-[14px] text-[#525558] lg:text-[18px]"
         >
           Didn’t receive an email?
           <span
             onClick={handleResend}
-            className="text-[#1E1F21] ml-[10px] underline font-[600] cursor-pointer"
+            className="ml-[10px] cursor-pointer font-[600] text-[#1E1F21] underline"
           >
             Resend
           </span>

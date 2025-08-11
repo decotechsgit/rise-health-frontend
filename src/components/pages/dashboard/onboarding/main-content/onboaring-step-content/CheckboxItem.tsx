@@ -10,20 +10,19 @@ type OnboardingStepTaskProps = {
   step: Step;
 };
 
-const CheckboxItem = ({
-                        step,
-                      }: OnboardingStepTaskProps) => {
-  const title = DOMPurify.sanitize(step.title, { ALLOWED_ATTR: ['href', 'title', 'target', 'rel']});
+const CheckboxItem = ({ step }: OnboardingStepTaskProps) => {
+  const title = DOMPurify.sanitize(step.title, {
+    ALLOWED_ATTR: ["href", "title", "target", "rel"],
+  });
   const description = step.description
-    ? DOMPurify.sanitize(step.description, { ALLOWED_ATTR: ['href', 'title', 'target', 'rel']})
+    ? DOMPurify.sanitize(step.description, {
+        ALLOWED_ATTR: ["href", "title", "target", "rel"],
+      })
     : null;
   return (
     <>
-      <div
-        className="my-5 flex  w-full lg:!w-[auto] min-h-[100px] items-start gap-5 rounded-lg border border-gray-200 bg-white p-6">
-        <StepCheckbox
-          stepId={step.id}
-        />
+      <div className="my-5 flex min-h-[100px] w-full items-start gap-5 rounded-lg border border-gray-200 bg-white p-6 lg:!w-[auto]">
+        <StepCheckbox stepId={step.id} />
         <div className="flex flex-col">
           <div className="flex items-center gap-4">
             <p

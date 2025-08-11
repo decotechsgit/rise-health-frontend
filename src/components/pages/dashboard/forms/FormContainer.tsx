@@ -116,7 +116,7 @@ const FormContainer = ({
               title="Save"
               type="submit"
               handleOnClick={handleSaveClick}
-              className="rounded-xl border-none bg-[var(--button-save-bg)]  px-5 py-1 md:px-6 md:py-2 text-lg font-normal text-[var(--button-text)] shadow-none"
+              className="rounded-xl border-none bg-[var(--button-save-bg)] px-5 py-1 text-lg font-normal text-[var(--button-text)] shadow-none md:px-6 md:py-2"
               btnClassName="!text-[14px] md:!text-[16px] lg:!text-[20px]"
               isLoading={isSubmitting}
               disabled={isSubmitting}
@@ -126,7 +126,7 @@ const FormContainer = ({
               type="submit"
               title={isEditing ? "Cancel" : "Edit"}
               handleOnClick={() => setIsEditing((prev) => !prev)}
-              className="rounded-xl border-none bg-[var(--button-save-bg)] px-5 py-1 md:px-6 md:py-2 text-lg font-normal text-[var(--button-text)] shadow-none"
+              className="rounded-xl border-none bg-[var(--button-save-bg)] px-5 py-1 text-lg font-normal text-[var(--button-text)] shadow-none md:px-6 md:py-2"
               btnClassName="!text-[14px] md:!text-[16px] lg:!text-[20px]"
               disabled={isSubmitting}
             />

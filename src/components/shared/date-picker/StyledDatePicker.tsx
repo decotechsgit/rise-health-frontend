@@ -1,17 +1,17 @@
-'use client';
-import React, { useState, useEffect, useRef } from 'react';
+"use client";
+import React, { useState, useEffect, useRef } from "react";
 
 import { altform } from "@/app/fonts/altform";
 import TextElement from "@components/shared/typography/TextElement.typo";
 
 const formatDate = (date: Date | null): string => {
-  if (!date) return '';
-  return date.toISOString().split('T')[0];
+  if (!date) return "";
+  return date.toISOString().split("T")[0];
 };
 
 const CalendarIcon = () => (
   <svg
-    className="w-5 h-5 text-gray-400"
+    className="h-5 w-5 text-gray-400"
     fill="none"
     stroke="currentColor"
     viewBox="0 0 24 24"
@@ -26,7 +26,11 @@ const CalendarIcon = () => (
   </svg>
 );
 
-const StyledDatePicker = ({ onDateSelect }: { onDateSelect: (date: Date) => void }) => {
+const StyledDatePicker = ({
+  onDateSelect,
+}: {
+  onDateSelect: (date: Date) => void;
+}) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
   const [currentDate, setCurrentDate] = useState(new Date());
@@ -34,34 +38,53 @@ const StyledDatePicker = ({ onDateSelect }: { onDateSelect: (date: Date) => void
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (datePickerRef.current && !datePickerRef.current.contains(event.target as Node)) {
+      if (
+        datePickerRef.current &&
+        !datePickerRef.current.contains(event.target as Node)
+      ) {
         setIsOpen(false);
       }
     };
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  const daysOfWeek = ['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su'];
+  const daysOfWeek = ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"];
   const today = new Date();
 
-  const firstDayOfMonth = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1);
+  const firstDayOfMonth = new Date(
+    currentDate.getFullYear(),
+    currentDate.getMonth(),
+    1
+  );
   const startingDayIndex = (firstDayOfMonth.getDay() + 6) % 7;
-  const daysInMonth = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0).getDate();
+  const daysInMonth = new Date(
+    currentDate.getFullYear(),
+    currentDate.getMonth() + 1,
+    0
+  ).getDate();
 
   const handleDateClick = (day: number) => {
-    const newSelectedDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), day);
+    const newSelectedDate = new Date(
+      currentDate.getFullYear(),
+      currentDate.getMonth(),
+      day
+    );
     setSelectedDate(newSelectedDate);
     onDateSelect(newSelectedDate);
     setIsOpen(false);
   };
 
   const goToPreviousMonth = () => {
-    setCurrentDate(new Date(currentDate.getFullYear(), currentDate.getMonth() - 1, 1));
+    setCurrentDate(
+      new Date(currentDate.getFullYear(), currentDate.getMonth() - 1, 1)
+    );
   };
 
   const goToNextMonth = () => {
-    setCurrentDate(new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 1));
+    setCurrentDate(
+      new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 1)
+    );
   };
 
   return (
@@ -76,31 +99,40 @@ const StyledDatePicker = ({ onDateSelect }: { onDateSelect: (date: Date) => void
             readOnly
             value={formatDate(selectedDate)}
             onClick={() => setIsOpen(!isOpen)}
-            className="mx-auto h-[65px] w-full rounded-lg border border-[#525558]  px-4  cursor-pointer"
+            className="mx-auto h-[65px] w-full cursor-pointer rounded-lg border border-[#525558] px-4"
           />
-          <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+          <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
             <CalendarIcon />
           </div>
         </div>
       </label>
 
       {isOpen && (
-        <div className="absolute z-10 w-[50%] right-0 p-4 mt-2 bg-white rounded-lg shadow-lg">
-          <div className="flex items-center justify-between mb-4">
-            <button onClick={goToPreviousMonth} className="p-2 rounded-full hover:bg-gray-100">
+        <div className="absolute right-0 z-10 mt-2 w-[50%] rounded-lg bg-white p-4 shadow-lg">
+          <div className="mb-4 flex items-center justify-between">
+            <button
+              onClick={goToPreviousMonth}
+              className="rounded-full p-2 hover:bg-gray-100"
+            >
               &lt;
             </button>
-            <div className="font-bold text-lg text-black">
-              {currentDate.toLocaleString('default', { month: 'long' })} {currentDate.getFullYear()}
+            <div className="text-lg font-bold text-black">
+              {currentDate.toLocaleString("default", { month: "long" })}{" "}
+              {currentDate.getFullYear()}
             </div>
-            <button onClick={goToNextMonth} className="p-2 rounded-full hover:bg-gray-100">
+            <button
+              onClick={goToNextMonth}
+              className="rounded-full p-2 hover:bg-gray-100"
+            >
               &gt;
             </button>
           </div>
 
           <div className="grid grid-cols-7 gap-1 text-center">
             {daysOfWeek.map((day) => (
-              <div key={day} className="text-sm font-medium text-gray-500">{day}</div>
+              <div key={day} className="text-sm font-medium text-gray-500">
+                {day}
+              </div>
             ))}
 
             {Array.from({ length: startingDayIndex }).map((_, index) => (
@@ -109,12 +141,14 @@ const StyledDatePicker = ({ onDateSelect }: { onDateSelect: (date: Date) => void
 
             {Array.from({ length: daysInMonth }).map((_, index) => {
               const day = index + 1;
-              const isSelected = selectedDate &&
+              const isSelected =
+                selectedDate &&
                 day === selectedDate.getDate() &&
                 currentDate.getMonth() === selectedDate.getMonth() &&
                 currentDate.getFullYear() === selectedDate.getFullYear();
 
-              const isToday = day === today.getDate() &&
+              const isToday =
+                day === today.getDate() &&
                 currentDate.getMonth() === today.getMonth() &&
                 currentDate.getFullYear() === today.getFullYear();
 
@@ -122,11 +156,7 @@ const StyledDatePicker = ({ onDateSelect }: { onDateSelect: (date: Date) => void
                 <button
                   key={day}
                   onClick={() => handleDateClick(day)}
-                  className={`w-10 h-10 flex items-center justify-center rounded-full text-black
-                    ${isSelected ? 'bg-orange-400 text-white' : ''}
-                    ${!isSelected && isToday ? 'border border-orange-400' : ''}
-                    ${!isSelected && !isToday ? 'hover:bg-gray-100' : ''}
-                  `}
+                  className={`flex h-10 w-10 items-center justify-center rounded-full text-black ${isSelected ? "bg-orange-400 text-white" : ""} ${!isSelected && isToday ? "border border-orange-400" : ""} ${!isSelected && !isToday ? "hover:bg-gray-100" : ""} `}
                 >
                   {day}
                 </button>

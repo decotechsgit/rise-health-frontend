@@ -72,7 +72,9 @@ const Summary = () => {
             show: true,
           },
         }}
-        onSearchChange={(val:string)=>{setSearch(val)}}
+        onSearchChange={(val: string) => {
+          setSearch(val);
+        }}
         searchPlaceholder="Search"
         searchClassName=""
       />
@@ -80,15 +82,15 @@ const Summary = () => {
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
         {isLoading
           ? Array(4)
-            .fill(0)
-            .map((_, index) => <RegisterCardSkeleton key={index} />)
+              .fill(0)
+              .map((_, index) => <RegisterCardSkeleton key={index} />)
           : registers.map((register, index) => (
-            <RegisterCard
-              key={index}
-              register={register}
-              onClick={() => handleRegisterClick(index)}
-            />
-          ))}
+              <RegisterCard
+                key={index}
+                register={register}
+                onClick={() => handleRegisterClick(index)}
+              />
+            ))}
       </div>
     </div>
   );

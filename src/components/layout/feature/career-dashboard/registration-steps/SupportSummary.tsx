@@ -1,15 +1,15 @@
-import { useCallback, useState } from 'react';
-import { FaCheckCircle } from 'react-icons/fa';
+import { useCallback, useState } from "react";
+import { FaCheckCircle } from "react-icons/fa";
 
-import ProgressBar from '@/components/layout/progress-bar';
-import IconButton from '@/components/shared/button';
-import CategoryCard from '@/components/shared/cards/Category.card';
-import CircleCard from '@/components/shared/cards/CircleCount.card';
-import VideoTutorialModal from '@/components/shared/modals/VideoTutorial.modal';
-import Row from '@/components/shared/row';
-import TextElement from '@/components/shared/typography/TextElement.typo';
+import ProgressBar from "@/components/layout/progress-bar";
+import IconButton from "@/components/shared/button";
+import CategoryCard from "@/components/shared/cards/Category.card";
+import CircleCard from "@/components/shared/cards/CircleCount.card";
+import VideoTutorialModal from "@/components/shared/modals/VideoTutorial.modal";
+import Row from "@/components/shared/row";
+import TextElement from "@/components/shared/typography/TextElement.typo";
 
-import WatchVideo from '../WatchVideo';
+import WatchVideo from "../WatchVideo";
 
 const SupportSummary = () => {
   const [showVideoModal, setShowVideoModal] = useState<boolean>(false);
@@ -22,18 +22,18 @@ const SupportSummary = () => {
    */
 
   const toggleVideoModal = useCallback(() => {
-    setShowVideoModal(prev => !prev);
+    setShowVideoModal((prev) => !prev);
   }, []);
 
   return (
-    <Row className="w-full bg-white p-4 rounded-2xl gap-4 flex-col items-end ">
-      <Row className="w-full  justify-between items-center">
+    <Row className="w-full flex-col items-end gap-4 rounded-2xl bg-white p-4">
+      <Row className="w-full items-center justify-between">
         <Row className="w-[16%] items-center justify-between">
           <ProgressBar />
           <ProgressBar colorClassName="!bg-indigo-400" />
           <ProgressBar colorClassName="!bg-green-400" />
 
-          <CircleCard count={4} className="size-[40px] z-40" />
+          <CircleCard count={4} className="z-40 size-[40px]" />
         </Row>
 
         <WatchVideo
@@ -46,16 +46,16 @@ const SupportSummary = () => {
 
       <Row className="w-full items-center justify-between">
         <Row className="w-[60%] flex-col">
-          <TextElement as="h3" className="w-full mb-4">
+          <TextElement as="h3" className="mb-4 w-full">
             Class of Support Summary
           </TextElement>
 
           {[
-            { title: 'Support Category', description: 'Personal Care' },
+            { title: "Support Category", description: "Personal Care" },
             {
-              title: 'Services',
+              title: "Services",
               description:
-                'Assistance with daily living, medication management, etc.',
+                "Assistance with daily living, medication management, etc.",
             },
           ].map((item, index) => (
             <Row className="items-center justify-start" key={index}>
@@ -67,47 +67,47 @@ const SupportSummary = () => {
         </Row>
 
         <CategoryCard
-          title={'AI Suggestions'}
+          title={"AI Suggestions"}
           containerClassName=""
           description={
-            'The Service Agreement needs an updated signature section to be valid.'
+            "The Service Agreement needs an updated signature section to be valid."
           }
         />
       </Row>
 
-      <Row className="w-full items-center justify-between mt-4">
+      <Row className="mt-4 w-full items-center justify-between">
         <Row className="w-[60%] flex-col">
-          <TextElement as="h3" className="w-full mb-4">
+          <TextElement as="h3" className="mb-4 w-full">
             Upload Documentation Review
           </TextElement>
 
           <Row className="flex-col gap-1">
             {[
               {
-                title: 'Worker Screening Clearance',
-                status: 'APPROVED',
-                message: '',
+                title: "Worker Screening Clearance",
+                status: "APPROVED",
+                message: "",
               },
               {
-                title: 'Consent for Information Sharing',
-                status: 'WARNING',
-                message: 'Review and approve',
+                title: "Consent for Information Sharing",
+                status: "WARNING",
+                message: "Review and approve",
               },
               {
-                title: 'Service Agreement',
-                status: 'ERROR',
-                message: 'Upload required',
+                title: "Service Agreement",
+                status: "ERROR",
+                message: "Upload required",
               },
 
               {
-                title: 'Participant Risk Management',
-                status: 'APPROVED',
-                message: '',
+                title: "Participant Risk Management",
+                status: "APPROVED",
+                message: "",
               },
               {
-                title: 'Policies and Procedures',
-                status: 'APPROVED',
-                message: '',
+                title: "Policies and Procedures",
+                status: "APPROVED",
+                message: "",
               },
             ].map((item, index) => (
               <Row className="w-full items-center" key={index}>
@@ -115,9 +115,9 @@ const SupportSummary = () => {
                   {item.title}
                 </TextElement>
 
-                <Row className="gap-2 items-center w-[40%]">
+                <Row className="w-[40%] items-center gap-2">
                   <FaCheckCircle
-                    className={`size-[15px] ${item.status === 'APPROVED' ? 'text-green-600' : item.status === 'ERROR' ? 'text-red-500' : 'text-yellow-500'}`}
+                    className={`size-[15px] ${item.status === "APPROVED" ? "text-green-600" : item.status === "ERROR" ? "text-red-500" : "text-yellow-500"}`}
                   />
 
                   <TextElement as="p">{`${item.message}`}</TextElement>
@@ -128,10 +128,10 @@ const SupportSummary = () => {
         </Row>
 
         <CategoryCard
-          title={'Next Steps'}
+          title={"Next Steps"}
           containerClassName=""
           description={
-            'The Service Agreement needs an updated signature section to be valid.'
+            "The Service Agreement needs an updated signature section to be valid."
           }
         />
       </Row>
@@ -139,7 +139,7 @@ const SupportSummary = () => {
       <IconButton title="Confirm" className="bg-orange-300" />
       {showVideoModal && (
         <VideoTutorialModal
-          heading={'CheckboxItem 4 video modal'}
+          heading={"CheckboxItem 4 video modal"}
           onCancel={toggleVideoModal}
           stepNumber={4}
         />

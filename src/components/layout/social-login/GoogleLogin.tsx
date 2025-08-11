@@ -12,7 +12,7 @@ const GoogleLoginButton = ({ containerClassName = "" }) => {
   return (
     <div
       onClick={handleGoogleLogin}
-      className={`flex justify-center items-center w-full min-h-[45px] lg:min-h-[54px] xl:min-h-[54px] xxl:min-h-[54px] overflow-hidden border-[1px] border-[#2D2F32] rounded-[8px] py-[12px] px-[24px] cursor-pointer hover:bg-gray-50 ${containerClassName}`}
+      className={`xxl:min-h-[54px] flex min-h-[45px] w-full cursor-pointer items-center justify-center overflow-hidden rounded-[8px] border-[1px] border-[#2D2F32] px-[24px] py-[12px] hover:bg-gray-50 lg:min-h-[54px] xl:min-h-[54px] ${containerClassName}`}
     >
       <svg
         width="20"

@@ -1,21 +1,21 @@
-'use client';
+"use client";
 
-import Image from 'next/image';
-import Link from 'next/link';
-import React, { useState, useRef, useEffect } from 'react';
-import { BsEye, BsArrowDown } from 'react-icons/bs';
+import Image from "next/image";
+import Link from "next/link";
+import React, { useState, useRef, useEffect } from "react";
+import { BsEye, BsArrowDown } from "react-icons/bs";
 
-import IconButton from '../button';
-import Row from '../row';
-import TextElement from '../typography/TextElement.typo';
+import IconButton from "../button";
+import Row from "../row";
+import TextElement from "../typography/TextElement.typo";
 
 interface CustomDropdownProps {
   files: string[];
 }
 const CustomFileDropdown: React.FC<CustomDropdownProps> = ({ files }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedFile, setSelectedFile] = useState('');
-  const [previewUrl, setPreviewUrl] = useState('');
+  const [selectedFile, setSelectedFile] = useState("");
+  const [previewUrl, setPreviewUrl] = useState("");
   const dropdownRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
@@ -28,8 +28,8 @@ const CustomFileDropdown: React.FC<CustomDropdownProps> = ({ files }) => {
       }
     };
 
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
   const handleSelect = (fileUrl: string) => {
@@ -43,7 +43,7 @@ const CustomFileDropdown: React.FC<CustomDropdownProps> = ({ files }) => {
   };
 
   const isPdf = (url: string) => {
-    return url.endsWith('.pdf');
+    return url.endsWith(".pdf");
   };
 
   return (
@@ -54,26 +54,26 @@ const CustomFileDropdown: React.FC<CustomDropdownProps> = ({ files }) => {
             selectedFile
               ? isPdf(selectedFile)
                 ? `PDF File`
-                : 'Image Selected'
-              : 'Choose a file --'
+                : "Image Selected"
+              : "Choose a file --"
           }
           handleOnClick={() => setIsOpen(!isOpen)}
-          className="border px-3 py-2 rounded-md w-full !justify-between items-center bg-white flex-row-reverse"
+          className="w-full flex-row-reverse items-center !justify-between rounded-md border bg-white px-3 py-2"
           Icon={BsArrowDown}
           iconColor="text-black"
         />
 
         {isOpen && (
-          <div className="absolute mt-1 w-full bg-white border rounded-md shadow-lg z-10 max-h-60 overflow-auto">
+          <div className="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md border bg-white shadow-lg">
             <div className="py-1">
               {files.map((fileUrl, index) => (
                 <div
                   key={index}
-                  className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
+                  className="cursor-pointer px-4 py-2 hover:bg-gray-100"
                   onClick={() => handleSelect(fileUrl)}
                 >
                   {isPdf(fileUrl) ? (
-                    <Row className="flex text-lg items-center justify-between">
+                    <Row className="flex items-center justify-between text-lg">
                       <p>Pdf 1 </p>
                       <Link href={fileUrl}>
                         <BsEye size={20} />
@@ -81,12 +81,12 @@ const CustomFileDropdown: React.FC<CustomDropdownProps> = ({ files }) => {
                     </Row>
                   ) : (
                     <Row className="flex items-center">
-                      <div className="w-12 h-12 mr-3 relative">
+                      <div className="relative mr-3 h-12 w-12">
                         <Image
                           src={fileUrl}
                           alt={`Thumbnail ${index + 1}`}
                           fill
-                          className="object-cover rounded"
+                          className="rounded object-cover"
                         />
                       </div>
 
@@ -105,16 +105,16 @@ const CustomFileDropdown: React.FC<CustomDropdownProps> = ({ files }) => {
           <TextElement as="h1">Preview</TextElement>
 
           {isImage(previewUrl) ? (
-            <div className="relative w-full h-64">
+            <div className="relative h-64 w-full">
               <Image
                 src={previewUrl}
                 alt="Selected image preview"
                 fill
-                className="object-contain rounded-md"
+                className="rounded-md object-contain"
               />
             </div>
           ) : isPdf(previewUrl) ? (
-            <div className="border rounded-md p-4 bg-gray-50">
+            <div className="rounded-md border bg-gray-50 p-4">
               <TextElement as="p" className="mb-2">
                 PDF Preview
               </TextElement>
@@ -123,7 +123,7 @@ const CustomFileDropdown: React.FC<CustomDropdownProps> = ({ files }) => {
                 href={previewUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-blue-600 hover:underline flex items-center"
+                className="flex items-center text-blue-600 hover:underline"
               >
                 <BsEye size={15} />
                 Open PDF Preview

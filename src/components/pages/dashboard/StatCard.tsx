@@ -8,9 +8,13 @@ interface StatCardProps {
 
 const StatCard = ({ title, percentage, className = "" }: StatCardProps) => {
   return (
-    <div className={`bg-white p-4 rounded-2xl border-2 ${className} flex flex-row items-center justify-between`}>
+    <div
+      className={`rounded-2xl border-2 bg-white p-4 ${className} flex flex-row items-center justify-between`}
+    >
       <TextElement className="text-[#1E1F21]">{title}</TextElement>
-      <TextElement as="h5" className="text-[#1E1F21]">{percentage}%</TextElement>
+      <TextElement as="h5" className="text-[#1E1F21]">
+        {percentage}%
+      </TextElement>
     </div>
   );
 };

@@ -1,4 +1,3 @@
-
 declare global {
   type ApiResponse<T> = T;
 
@@ -8,10 +7,10 @@ declare global {
   //   payload: T;
   // };
   type ApiErrorResponse = {
-    statusCode?: number,
-    timestamp?: string,
-    path: string,
-    message: string
+    statusCode?: number;
+    timestamp?: string;
+    path: string;
+    message: string;
   };
   type PaginatedApiResponse<T> = ApiResponse<{
     data: T[];
@@ -39,4 +38,4 @@ declare global {
   type OrderBy = "asc" | "desc";
 }
 
-export { };
+export {};

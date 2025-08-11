@@ -1,5 +1,5 @@
-import Row from '@/components/shared/row';
-import TextElement from '@/components/shared/typography/TextElement.typo';
+import Row from "@/components/shared/row";
+import TextElement from "@/components/shared/typography/TextElement.typo";
 
 interface IProfileStatItemProps {
   title: string;
@@ -18,7 +18,7 @@ const ProfileStatItem: React.FC<IProfileStatItemProps> = ({
 }) => {
   return (
     <Row
-      className={`items-center p-4 justify-between rounded-lg relative ${containerClassName}`}
+      className={`relative items-center justify-between rounded-lg p-4 ${containerClassName}`}
     >
       <Row className="items-center gap-2">
         <Icon size={40} />

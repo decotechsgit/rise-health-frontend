@@ -29,12 +29,12 @@ const CheckEmailWrapper: React.FC<ICheckEmailWrapper> = ({ email }) => {
       <TextElement as="h1">Check your inbox</TextElement>
       <TextElement
         as="h3"
-        className="mt-[6px] lg:mt-[8px] text-[14px] lg:text-[16px]"
+        className="mt-[6px] text-[14px] lg:mt-[8px] lg:text-[16px]"
       >
         We sent you a link to reset your password.
       </TextElement>
 
-      <Row className="items-center gap-[8px] lg:gap-2 mt-[16px] lg:mt-[24px]">
+      <Row className="mt-[16px] items-center gap-[8px] lg:mt-[24px] lg:gap-2">
         <CircleCard count={getFirstLetter(email)} />
 
         <TextElement as="h6">{email}</TextElement>

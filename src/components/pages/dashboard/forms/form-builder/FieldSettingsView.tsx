@@ -37,37 +37,37 @@ const FieldSettingsView = ({
       {selectedField ? (
         <>
           <div>
-            <TextElement className="mb-1 text-[14px] sm:text-[16px] font-[400] text-[var(--primary-text)]">
+            <TextElement className="mb-1 text-[14px] font-[400] text-[var(--primary-text)] sm:text-[16px]">
               Type
             </TextElement>
             <select
-              className="text-[14px] sm:text-[16px] mb-2 w-full rounded-[8px] border-[1px] border-[var(--border-input)] p-2"
+              className="mb-2 w-full rounded-[8px] border-[1px] border-[var(--border-input)] p-2 text-[14px] sm:text-[16px]"
               value={selectedField.type}
               onChange={(e) => onChangeType(e.target.value)}
             >
               {fieldTypes.map((type) => (
-                <option key={type.value} value={type.value} >
+                <option key={type.value} value={type.value}>
                   {type.label}
                 </option>
               ))}
             </select>
           </div>
           <div>
-            <TextElement className="mb-1 text-[14px] sm:text-[16px] font-[400] text-[var(--primary-text)]">
+            <TextElement className="mb-1 text-[14px] font-[400] text-[var(--primary-text)] sm:text-[16px]">
               Label
             </TextElement>
             <input
-              className="text-[14px] sm:text-[16px] mb-2 w-full rounded-[8px] border-[1px] border-[var(--border-input)] p-2 sm:p-3"
+              className="mb-2 w-full rounded-[8px] border-[1px] border-[var(--border-input)] p-2 text-[14px] sm:p-3 sm:text-[16px]"
               value={selectedField.label}
               onChange={(e) => onUpdateField("label", e.target.value)}
             />
           </div>
           <div>
-            <TextElement className="mb-1 text-[14px] sm:text-[16px] font-[400] text-[var(--primary-text)]">
+            <TextElement className="mb-1 text-[14px] font-[400] text-[var(--primary-text)] sm:text-[16px]">
               Placeholder
             </TextElement>
             <input
-              className="mb-2 w-full text-[14px] sm:text-[16px] rounded-[8px] border-[1px] border-[var(--border-input)] p-2 sm:p-3"
+              className="mb-2 w-full rounded-[8px] border-[1px] border-[var(--border-input)] p-2 text-[14px] sm:p-3 sm:text-[16px]"
               value={selectedField.placeholder}
               onChange={(e) => onUpdateField("placeholder", e.target.value)}
             />

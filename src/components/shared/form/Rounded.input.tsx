@@ -80,7 +80,7 @@ const RoundedInput: React.FC<IRoundedInputProps> = ({
               }
             }}
             maxLength={maxLength}
-            className={`text-[20px] lg:text-[24px] font-[400] outline-none px-[12px] border-[1px] border-[#525558] text-center rounded-[8px] size-[45px] lg:size-[58px] xs:size-[72px] placeholder:text-[14px]  ${
+            className={`xs:size-[72px] size-[45px] rounded-[8px] border-[1px] border-[#525558] px-[12px] text-center text-[20px] font-[400] outline-none placeholder:text-[14px] lg:size-[58px] lg:text-[24px] ${
               errors?.[name] ? "border-red-500" : ""
             } ${className}`}
             placeholder={placeHolder}

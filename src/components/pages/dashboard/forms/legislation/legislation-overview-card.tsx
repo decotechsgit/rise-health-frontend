@@ -14,7 +14,7 @@ const LegislationOverviewCard = ({ firstItem, relatedItems }: Props) => {
     <div className="scrollbar-none max-h-[80vh] overflow-y-auto bg-[var(--page-bg)] sm:p-2">
       <div className="flex flex-col gap-2 rounded-xl border border-[var(--card-border)] bg-white p-6 shadow-sm">
         <div className="flex items-center justify-between">
-          <TextElement className="lg:text-[24px] font-[600] text-[var(--gray-900)] text-wrap break-words">
+          <TextElement className="font-[600] text-wrap break-words text-[var(--gray-900)] lg:text-[24px]">
             {firstItem.title || ""}
           </TextElement>
           <a href={firstItem.url} target="_blank" rel="noopener noreferrer">
@@ -26,12 +26,12 @@ const LegislationOverviewCard = ({ firstItem, relatedItems }: Props) => {
             />
           </a>
         </div>
-        <TextElement className="lg:text-[18px] font-[400] text-[var(--gray-700)]">
+        <TextElement className="font-[400] text-[var(--gray-700)] lg:text-[18px]">
           {firstItem.description || ""}
         </TextElement>
       </div>
       <div className="mt-8">
-        <TextElement className="mb-4 pl-6 text-[20px] lg:text-[24px] font-[600] text-[var(--gray-600)]">
+        <TextElement className="mb-4 pl-6 text-[20px] font-[600] text-[var(--gray-600)] lg:text-[24px]">
           Related Documentation
         </TextElement>
         <LegislationItems items={relatedItems} />

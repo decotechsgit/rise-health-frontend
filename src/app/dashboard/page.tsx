@@ -3,7 +3,6 @@
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 
-
 import Registration from "@components/pages/dashboard/registration/Registration";
 
 const DashboardPage = () => {

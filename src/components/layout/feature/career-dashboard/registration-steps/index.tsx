@@ -1,21 +1,21 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo } from "react";
 
-import ReviewSelectedSupport from './ReviewSelectedSupport';
-import SelectSubSupport from './SelectSubSupport';
-import SelectSupport from './SelectSupport';
-import SupportSummary from './SupportSummary';
+import ReviewSelectedSupport from "./ReviewSelectedSupport";
+import SelectSubSupport from "./SelectSubSupport";
+import SelectSupport from "./SelectSupport";
+import SupportSummary from "./SupportSummary";
 
 export enum RegistrationStepsFlowEnum {
-  SELECT_SUPPORT = 'SELECT_SUPPORT',
-  SELECT_SUB_SUPPORT = 'SELECT_SUB_SUPPORT',
-  REVIEW = 'REVIEW',
-  FILES = 'FILES',
-  SUMMARY = 'SUMMARY',
+  SELECT_SUPPORT = "SELECT_SUPPORT",
+  SELECT_SUB_SUPPORT = "SELECT_SUB_SUPPORT",
+  REVIEW = "REVIEW",
+  FILES = "FILES",
+  SUMMARY = "SUMMARY",
 }
 
 const RegistrationSteps = () => {
   const [selectedStep, setSelectedStep] = useState<RegistrationStepsFlowEnum>(
-    RegistrationStepsFlowEnum.SELECT_SUPPORT,
+    RegistrationStepsFlowEnum.SELECT_SUPPORT
   );
 
   const content = useMemo(() => {

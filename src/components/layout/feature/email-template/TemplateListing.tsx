@@ -72,10 +72,10 @@ const EmailTemplateListing: React.FC<IEmailTemplateListingProps> = ({
   };
 
   return (
-    <Row className="p-6 flex-col items-end">
+    <Row className="flex-col items-end p-6">
       <TextElement as="h1">Email Templates</TextElement>
 
-      <Row className="w-full items-center justify-between my-2 p-2 bg-slate-50 border rounded-md">
+      <Row className="my-2 w-full items-center justify-between rounded-md border bg-slate-50 p-2">
         {[
           { title: "Subject", className: "w-[50%] lg:w-[60%] text-start" },
           { title: "Group", className: "w-[16%] border-x" },
@@ -92,7 +92,7 @@ const EmailTemplateListing: React.FC<IEmailTemplateListingProps> = ({
         ))}
       </Row>
 
-      <Row className="w-full flex-col gap-2 items-center justify-between">
+      <Row className="w-full flex-col items-center justify-between gap-2">
         {data?.items?.map((item, index) => (
           <EmailTemplateCard
             key={item.id}
@@ -112,8 +112,8 @@ const EmailTemplateListing: React.FC<IEmailTemplateListingProps> = ({
         ))}
       </Row>
 
-      <Row className="w-full items-center justify-between gap-2 mt-4">
-        <Row className="gap-2 items-center">
+      <Row className="mt-4 w-full items-center justify-between gap-2">
+        <Row className="items-center gap-2">
           {[
             { title: "Total Records : " },
             { title: data.pageInfo.totalItems },
@@ -125,12 +125,12 @@ const EmailTemplateListing: React.FC<IEmailTemplateListingProps> = ({
         </Row>
 
         {/* page navigation */}
-        <Row className="gap-2 items-center">
+        <Row className="items-center gap-2">
           <ReactIcon
             Icon={GrFormPrevious}
             className={` ${
               currentPage <= 1
-                ? "text-gray-400 cursor-not-allowed"
+                ? "cursor-not-allowed text-gray-400"
                 : "cursor-pointer"
             }`}
             onClick={() => currentPage > 1 && handlePageChange(currentPage - 1)}
@@ -138,14 +138,14 @@ const EmailTemplateListing: React.FC<IEmailTemplateListingProps> = ({
 
           <TextElement
             as="p"
-            className=" bg-slate-100 px-4 py-2 rounded-sm border-[1px] border-gray-400 cursor-none"
+            className="cursor-none rounded-sm border-[1px] border-gray-400 bg-slate-100 px-4 py-2"
           >{`${currentPage}/${data.pageInfo.totalPages}`}</TextElement>
 
           <ReactIcon
             Icon={MdOutlineNavigateNext}
             className={` ${
               currentPage >= data.pageInfo.totalPages
-                ? "text-gray-400 cursor-not-allowed"
+                ? "cursor-not-allowed text-gray-400"
                 : "cursor-pointer"
             }`}
             onClick={() =>

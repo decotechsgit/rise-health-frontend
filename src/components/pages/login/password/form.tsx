@@ -69,7 +69,7 @@ export const PasswordForm = ({ email }: { email: string }) => {
     <>
       <p
         onClick={() => router.push(PAGES_ROUTES.login)}
-        className="mt-[16px] lg:mt-[24px] font-[400] text-[14px] lg:text-[18px] cursor-pointer underline"
+        className="mt-[16px] cursor-pointer text-[14px] font-[400] underline lg:mt-[24px] lg:text-[18px]"
       >
         Use another account
       </p>
@@ -88,13 +88,13 @@ export const PasswordForm = ({ email }: { email: string }) => {
           containerClassName={`mt-[30px] lg:mt-[40px] ${
             error ? "!mb-[8px]" : "!mb-[16px]"
           }`}
-          className={`${error ? "border-[#FE7A95] border-[2px] bg-white" : ""}`}
+          className={`${error ? "border-[2px] border-[#FE7A95] bg-white" : ""}`}
         />
       ))}
 
       {error && (
         <Row className="mt-[px] mb-[16px] items-center gap-[6px]">
-          <MdOutlineInfo className="text-[#FE7A95] size-[14px]" />
+          <MdOutlineInfo className="size-[14px] text-[#FE7A95]" />
           <TextElement as="h4">{error}</TextElement>
         </Row>
       )}
@@ -102,7 +102,7 @@ export const PasswordForm = ({ email }: { email: string }) => {
       <Row className="w-full justify-end">
         <p
           onClick={handleForgotPassword}
-          className="mb-[24px] text-[#1E1F21] underline font-[400] text-[14px] lg:text-[18px] cursor-pointer"
+          className="mb-[24px] cursor-pointer text-[14px] font-[400] text-[#1E1F21] underline lg:text-[18px]"
         >
           Forgot password?
         </p>
@@ -110,7 +110,7 @@ export const PasswordForm = ({ email }: { email: string }) => {
 
       <IconButton
         title="Login"
-        className=" w-full"
+        className="w-full"
         disabled={isProcessing}
         handleOnClick={handleSubmit(onSubmit)}
         isLoading={isProcessing}

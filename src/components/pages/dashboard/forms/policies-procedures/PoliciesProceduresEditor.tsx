@@ -22,7 +22,7 @@ const PoliciesProceduresEditor = ({
   policyId,
   title,
 }: Props) => {
-  const [isEditing, setIsEditing] = useState<boolean>(false)
+  const [isEditing, setIsEditing] = useState<boolean>(false);
   const [content, setContent] = useState(initialContent);
   const router = useRouter();
   const [loading, setLoading] = useState(false);
@@ -69,24 +69,23 @@ const PoliciesProceduresEditor = ({
           className="rounded-xl border-none bg-[var(--button-cancel-bg)] px-10 py-6 text-lg font-normal text-[var(--button-text)] shadow-none"
           handleOnClick={handleCancel}
         />
-        {
-          isEditing ?
-            <Button
-              title="Save"
-              isLoading={loading}
-              disabled={loading}
-              className="rounded-xl border-none bg-[var(--button-save-bg)] px-10 py-6 text-lg font-normal text-[var(--button-text)] shadow-none"
-              handleOnClick={handleSave}
-            />
-            :
-            <Button
-              title="Edit"
-              className="rounded-xl border-none bg-[var(--button-save-bg)] px-10 py-6 text-lg font-normal text-[var(--button-text)] shadow-none"
-              handleOnClick={() => {
-                setIsEditing(true)
-              }}
-            />
-        }
+        {isEditing ? (
+          <Button
+            title="Save"
+            isLoading={loading}
+            disabled={loading}
+            className="rounded-xl border-none bg-[var(--button-save-bg)] px-10 py-6 text-lg font-normal text-[var(--button-text)] shadow-none"
+            handleOnClick={handleSave}
+          />
+        ) : (
+          <Button
+            title="Edit"
+            className="rounded-xl border-none bg-[var(--button-save-bg)] px-10 py-6 text-lg font-normal text-[var(--button-text)] shadow-none"
+            handleOnClick={() => {
+              setIsEditing(true);
+            }}
+          />
+        )}
       </div>
     </div>
   );
