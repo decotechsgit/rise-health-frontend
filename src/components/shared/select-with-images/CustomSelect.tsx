@@ -7,23 +7,33 @@ import TextElement from "@components/shared/typography/TextElement.typo";
 type Option = {
   value: string;
   title: string;
-  imgUrl: string;
+  imgUrl?: string;
 };
 
 type CustomSelectProps = {
   options: Option[];
   onSelect: (option: Option) => void;
   placeholder?: string;
+  value?: { title: string; value: string; imgUrl?: string } | null;
 };
 
 const CustomSelect: React.FC<CustomSelectProps> = ({
+  value,
   options,
   onSelect,
   placeholder = "Select an auditor",
 }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedOption, setSelectedOption] = useState<Option | null>(null);
+  const [selectedOption, setSelectedOption] = useState<Option | null>(
+    value ?? null
+  );
   const selectRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (value) {
+      setSelectedOption(value);
+    }
+  }, [value]);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -59,11 +69,13 @@ const CustomSelect: React.FC<CustomSelectProps> = ({
       >
         {selectedOption ? (
           <div className="flex items-center gap-3">
-            <img
-              src={selectedOption.imgUrl}
-              alt={selectedOption.title}
-              className="h-8 w-auto object-cover"
-            />
+            {selectedOption.imgUrl && (
+              <img
+                src={selectedOption.imgUrl}
+                alt={selectedOption.title}
+                className="h-8 w-auto object-cover"
+              />
+            )}
             <TextElement className={`${altform.className}`}>
               {selectedOption.title}
             </TextElement>
@@ -89,7 +101,7 @@ const CustomSelect: React.FC<CustomSelectProps> = ({
 
       {isOpen && (
         <div
-          className="absolute z-10 mt-2 w-full rounded-lg border border-[#525558] bg-[#1c1e21] shadow-lg"
+          className="absolute z-10 mt-2 w-full rounded-lg border border-[#525558] bg-[#fff] shadow-lg"
           role="listbox"
         >
           <ul className="max-h-60 overflow-y-auto py-1">
@@ -97,16 +109,18 @@ const CustomSelect: React.FC<CustomSelectProps> = ({
               <li
                 key={option.value}
                 onClick={() => handleOptionClick(option)}
-                className="flex cursor-pointer items-center gap-3 px-4 py-3 text-white transition-colors duration-150 hover:bg-[#3a3d40]"
+                className="flex cursor-pointer items-center gap-3 px-4 py-3 text-white transition-colors duration-150 hover:bg-[#fafafa]"
                 role="option"
                 aria-selected={selectedOption?.value === option.value}
               >
-                <img
-                  src={option.imgUrl}
-                  alt={option.title}
-                  className="h-6 w-auto object-cover"
-                />
-                <TextElement className={`${altform.className} !text-white`}>
+                {option?.imgUrl && (
+                  <img
+                    src={option.imgUrl}
+                    alt={option.title}
+                    className="h-6 w-auto object-cover"
+                  />
+                )}
+                <TextElement className={`${altform.className} !text-black`}>
                   {option.title}
                 </TextElement>
               </li>

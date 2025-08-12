@@ -10,6 +10,7 @@ import GroupSelectItem from "@components/pages/dashboard/onboarding/main-content
 import VideoPlayer from "@components/pages/dashboard/onboarding/main-content/VideoPlayer";
 import TextElement from "@components/shared/typography/TextElement.typo";
 import OnboardingPageSkeleton from "@components/skeletons/onboaring/OnboardingPageSkeleton";
+import AuditStep from "../AuditSteps";
 
 type OnboardingContentProps = {
   stepKey: string;
@@ -30,12 +31,15 @@ const OnboardingContent = ({
     [onboardingSteps]
   );
 
+  console.log("🚀 ~ OnboardingContent ~ onboardingStep:", onboardingStep);
   if (!onboardingStep) {
     return <OnboardingPageSkeleton />;
   }
 
   const { videoUrl, tips } = onboardingStep;
   const onboardingStepTitle = DOMPurify.sanitize(onboardingStep.title);
+
+  const isBookAnAuditStep = onboardingStep?.stepKey === "book_for_audit";
 
   return (
     <div className="flex w-full flex-wrap overflow-y-hidden">
@@ -46,7 +50,9 @@ const OnboardingContent = ({
         <div dangerouslySetInnerHTML={{ __html: onboardingStepTitle }} />
       </TextElement>
 
-      <section className="w-auto overflow-x-hidden overflow-y-hidden p-2 pb-40 lg:mt-4 lg:min-h-[64vh] lg:w-2/3">
+      <section
+        className={`w-auto overflow-x-hidden overflow-y-hidden p-2 pb-40 lg:mt-4 lg:min-h-[64vh] ${isBookAnAuditStep ? "w-full" : "lg:w-2/3"}`}
+      >
         {onboardingStep.children?.map((item) => {
           switch (item.type) {
             case "checkbox":
@@ -67,6 +73,7 @@ const OnboardingContent = ({
               return null;
           }
         })}
+        {isBookAnAuditStep && <AuditStep />}
         <div className="mx-auto mt-20 flex w-full justify-center overflow-x-hidden lg:hidden">
           <OnboardingActions
             stepKey={stepKey}
@@ -77,10 +84,12 @@ const OnboardingContent = ({
         </div>
       </section>
 
-      <aside className="hidden h-auto w-1/3 p-3 pb-40 lg:block">
-        {videoUrl && <VideoPlayer videoUrl={videoUrl} />}
-        <div className="my-8">{tips && <OnboardingTips tips={tips} />}</div>
-      </aside>
+      {!isBookAnAuditStep && (
+        <aside className="hidden h-auto w-1/3 p-3 pb-40 lg:block">
+          {videoUrl && <VideoPlayer videoUrl={videoUrl} />}
+          <div className="my-8">{tips && <OnboardingTips tips={tips} />}</div>
+        </aside>
+      )}
       <div className="relative">
         <div className="absolute hidden lg:right-0 lg:bottom-0 lg:block">
           <OnboardingActions

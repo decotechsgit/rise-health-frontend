@@ -10,6 +10,7 @@ import SidebarItem from "./SidebarItem";
 
 const VerticalSidebar = () => {
   const [steps, setSteps] = useState<Step[] | null>(null);
+  console.log("🚀 ~ VerticalSidebar ~ steps:", steps);
   const params = useSearchParams();
 
   const router = useRouter();

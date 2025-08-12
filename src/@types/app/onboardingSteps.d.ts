@@ -17,11 +17,20 @@ declare global {
     prepare_registration_select?: Record<string, boolean>;
   };
 
+  type AuditType = {
+    auditor: string;
+    date: Date | string;
+    time: string;
+    scopeOfAudit: string;
+    notes: string;
+  };
+
   type Progress = {
     checkboxes?: Record<string, boolean>;
     uploads?: Uploads;
     registrations?: Registrations;
     completedSteps?: string[];
+    audit?: Array<AuditType>;
   };
   type Step = {
     id: string;

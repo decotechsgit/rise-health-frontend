@@ -1,18 +1,16 @@
-"use client";
-
-import { useState } from "react";
+import React, { useState } from "react";
 import Step1 from "./Step1";
-import Step2 from "./Step2";
+import BookAppointment from "./BookAppointment";
 
-const Proda = () => {
+const AuditStep = () => {
   const [step, setStep] = useState<number>(1);
   return step === 1 ? (
     <Step1 setStep={setStep} />
   ) : step === 2 ? (
-    <Step2 setStep={setStep} />
+    <BookAppointment />
   ) : (
     ""
   );
 };
 
-export default Proda;
+export default AuditStep;

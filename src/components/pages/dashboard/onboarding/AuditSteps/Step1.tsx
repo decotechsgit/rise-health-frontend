@@ -4,7 +4,6 @@ import { altform } from "@/app/fonts/altform";
 import Button from "@components/shared/button";
 import { IoIosArrowBack } from "react-icons/io";
 import Image from "next/image";
-import AppointmentDrawer from "./AppointmentDrawer";
 import { useState } from "react";
 
 const steps = [
@@ -34,21 +33,14 @@ const steps = [
   },
 ];
 
-interface Step2Props {
+interface Step1Props {
   setStep: (step: number) => void;
 }
 
-const Step2 = ({ setStep }: Step2Props) => {
-  const [drawer, setDrawer] = useState<boolean>(false);
+const Step2 = ({ setStep }: Step1Props) => {
   return (
     <>
       <div className="rounded-xl bg-white p-10 shadow">
-        <span
-          className="flex cursor-pointer items-center gap-1 text-[#6E6E6E]"
-          onClick={() => setStep(1)}
-        >
-          <IoIosArrowBack /> Previous step
-        </span>
         {/* Heading */}
         <TextElement
           className={`${altform.className} text-[40px] !font-[400]`}
@@ -130,24 +122,13 @@ const Step2 = ({ setStep }: Step2Props) => {
         {/* Action Buttons */}
         <div className="mt-10 flex justify-end gap-4">
           <Button
-            title="  Mark as complete"
-            btnClassName="!text-[16px]"
-            className="h-[56px] !w-[183px] rounded-sm !border-[#A3A3A3] bg-[#fff] shadow-none"
-          />
-          <Button
             btnClassName="!text-[16px] !text-white"
-            title="Next step"
-            className="h-[56px] !w-[124px] rounded-sm border-none bg-[#F59432] shadow-none"
-            handleOnClick={() => setDrawer(true)}
+            title="Book an Appointment"
+            className="h-[56px] !w-[220px] rounded-sm border-none bg-[#F59432] shadow-none"
+            handleOnClick={() => setStep(2)}
           />
         </div>
       </div>
-
-      <AppointmentDrawer
-        isOpen={drawer}
-        onClose={() => setDrawer(false)}
-        width="half"
-      />
     </>
   );
 };

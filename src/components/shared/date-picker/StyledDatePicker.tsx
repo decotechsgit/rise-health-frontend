@@ -28,14 +28,20 @@ const CalendarIcon = () => (
 
 const StyledDatePicker = ({
   onDateSelect,
+  value,
 }: {
   onDateSelect: (date: Date) => void;
+  value?: Date | null;
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
   const [currentDate, setCurrentDate] = useState(new Date());
   const datePickerRef = useRef<HTMLDivElement>(null);
-
+  useEffect(() => {
+    if (value) {
+      setSelectedDate(value);
+    }
+  }, [value]);
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (
@@ -68,20 +74,22 @@ const StyledDatePicker = ({
     const newSelectedDate = new Date(
       currentDate.getFullYear(),
       currentDate.getMonth(),
-      day
+      day + 1
     );
     setSelectedDate(newSelectedDate);
     onDateSelect(newSelectedDate);
     setIsOpen(false);
   };
 
-  const goToPreviousMonth = () => {
+  const goToPreviousMonth = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
     setCurrentDate(
       new Date(currentDate.getFullYear(), currentDate.getMonth() - 1, 1)
     );
   };
 
-  const goToNextMonth = () => {
+  const goToNextMonth = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
     setCurrentDate(
       new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 1)
     );
@@ -108,7 +116,7 @@ const StyledDatePicker = ({
       </label>
 
       {isOpen && (
-        <div className="absolute right-0 z-10 mt-2 w-[50%] rounded-lg bg-white p-4 shadow-lg">
+        <div className="absolute right-0 z-10 mt-2 w-[100%] max-w-[320px] rounded-lg bg-white p-4 shadow-lg">
           <div className="mb-4 flex items-center justify-between">
             <button
               onClick={goToPreviousMonth}

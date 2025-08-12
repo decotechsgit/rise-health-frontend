@@ -13,6 +13,7 @@ import { updateOnboardingProgress } from "@/actions/onboarding.actions";
 import { onboardingService } from "@api/onboarding.service";
 
 type OnboardingContextType = {
+  loading: boolean;
   onboarding: OnboardingProgress | null;
   onboardingStep: Step | null;
   setOnboardingStep: Dispatch<SetStateAction<Step | null>>;
@@ -48,6 +49,7 @@ export const OnboardingProvider = ({
   const [registrationGroupStepId, setRegistrationGroupStepId] = useState("");
   const [registrationGroupParentKey, setRegistrationGroupParentKey] =
     useState("");
+  const [loading, setLoading] = useState<boolean>(false);
 
   const fetchOnboarding = async () => {
     try {
@@ -88,7 +90,9 @@ export const OnboardingProvider = ({
   useEffect(() => {
     const updateProgress = async () => {
       if (onboarding) {
+        setLoading(true);
         await updateOnboardingProgress(onboarding);
+        setLoading(false);
       }
     };
     updateProgress();
@@ -112,6 +116,7 @@ export const OnboardingProvider = ({
   return (
     <OnboardingContext.Provider
       value={{
+        loading,
         onboarding,
         setOnboarding,
         onboardingStep,
