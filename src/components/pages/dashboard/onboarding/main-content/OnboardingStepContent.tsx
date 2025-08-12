@@ -31,7 +31,6 @@ const OnboardingContent = ({
     [onboardingSteps]
   );
 
-  console.log("🚀 ~ OnboardingContent ~ onboardingStep:", onboardingStep);
   if (!onboardingStep) {
     return <OnboardingPageSkeleton />;
   }

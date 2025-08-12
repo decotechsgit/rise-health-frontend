@@ -3,11 +3,7 @@ import React, { useState, useEffect, useRef } from "react";
 
 import { altform } from "@/app/fonts/altform";
 import TextElement from "@components/shared/typography/TextElement.typo";
-
-const formatDate = (date: Date | null): string => {
-  if (!date) return "";
-  return date.toISOString().split("T")[0];
-};
+import moment from "moment";
 
 const CalendarIcon = () => (
   <svg
@@ -37,11 +33,11 @@ const StyledDatePicker = ({
   const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
   const [currentDate, setCurrentDate] = useState(new Date());
   const datePickerRef = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
-    if (value) {
-      setSelectedDate(value);
-    }
+    if (value) setSelectedDate(value);
   }, [value]);
+
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (
@@ -74,7 +70,7 @@ const StyledDatePicker = ({
     const newSelectedDate = new Date(
       currentDate.getFullYear(),
       currentDate.getMonth(),
-      day + 1
+      day
     );
     setSelectedDate(newSelectedDate);
     onDateSelect(newSelectedDate);
@@ -105,7 +101,7 @@ const StyledDatePicker = ({
           <input
             type="text"
             readOnly
-            value={formatDate(selectedDate)}
+            value={moment(selectedDate).format("YYYY-MM-DD")}
             onClick={() => setIsOpen(!isOpen)}
             className="mx-auto h-[65px] w-full cursor-pointer rounded-lg border border-[#525558] px-4"
           />

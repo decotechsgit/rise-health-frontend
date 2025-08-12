@@ -7,7 +7,7 @@ const AuditStep = () => {
   return step === 1 ? (
     <Step1 setStep={setStep} />
   ) : step === 2 ? (
-    <BookAppointment />
+    <BookAppointment setStep={setStep} />
   ) : (
     ""
   );

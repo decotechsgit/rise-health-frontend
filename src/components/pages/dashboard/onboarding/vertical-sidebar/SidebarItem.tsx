@@ -46,7 +46,7 @@ const SidebarItem = ({
             as="span"
             className={` ${isSelected ? "text-black" : "text-gray-400"} ${altform.className}`}
           >
-            {!isCompleted ? (
+            {isCompleted ? (
               step.order
             ) : (
               <svg

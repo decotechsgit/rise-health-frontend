@@ -7,6 +7,9 @@ import TextElement from "@components/shared/typography/TextElement.typo";
 import { useOnboarding } from "@/contexts/onboarding-context";
 import { useSearchParams } from "next/navigation";
 import Button from "@components/shared/button";
+import ReadonlyDatePicker from "@components/shared/date-picker/ReadonlyDatePicker";
+import moment from "moment";
+import { HiOutlineArrowNarrowLeft } from "react-icons/hi";
 
 type SelectOption = {
   title: string;
@@ -31,26 +34,89 @@ const auditProviders = [
     title: "AQCGROUP",
     value: "aqcgroup",
     imgUrl: "/images/auditors/aqcgroup.png",
+    avaiableDates: [
+      moment().toISOString(),
+      moment().add(1, "day").toISOString(),
+      moment().add(2, "day").toISOString(),
+      moment().add(3, "day").toISOString(),
+      moment().add(4, "day").toISOString(),
+      moment().add(5, "day").toISOString(),
+      moment().add(6, "day").toISOString(),
+      moment().add(7, "day").toISOString(),
+      moment().add(17, "day").toISOString(),
+      moment().add(25, "day").toISOString(),
+    ],
   },
   {
     title: "ASSURED AUDITING",
     value: "assured-auditing",
     imgUrl: "/images/auditors/assured-auditing.png",
+    avaiableDates: [
+      moment().toISOString(),
+      moment().add(2, "day").toISOString(),
+      moment().add(3, "day").toISOString(),
+      moment().add(4, "day").toISOString(),
+      moment().add(6, "day").toISOString(),
+      moment().add(8, "day").toISOString(),
+      moment().add(9, "day").toISOString(),
+      moment().add(10, "day").toISOString(),
+      moment().add(13, "day").toISOString(),
+      moment().add(22, "day").toISOString(),
+    ],
   },
   {
     title: "AUDIT WISE GROUP",
     value: "audit-wise-group",
     imgUrl: "/images/auditors/audit-wise-group.png",
+    avaiableDates: [
+      moment().toISOString(),
+      moment().subtract(5, "day").toISOString(),
+      moment().subtract(4, "day").toISOString(),
+      moment().subtract(3, "day").toISOString(),
+      moment().subtract(2, "day").toISOString(),
+      moment().subtract(1, "day").toISOString(),
+      moment().add(1, "day").toISOString(),
+      moment().add(2, "day").toISOString(),
+      moment().add(3, "day").toISOString(),
+      moment().add(4, "day").toISOString(),
+    ],
   },
   {
     title: "ADDED VALUE ASSESSOR",
     value: "added-value-assessor",
     imgUrl: "/images/auditors/added-value-assessor.png",
+    avaiableDates: [
+      moment().toISOString(),
+      moment().add(4, "day").toISOString(),
+      moment().add(8, "day").toISOString(),
+      moment().add(10, "day").toISOString(),
+      moment().add(11, "day").toISOString(),
+      moment().add(16, "day").toISOString(),
+      moment().add(22, "day").toISOString(),
+    ],
   },
   {
     title: "CERTIFI INTERNATIONAL",
     value: "certifi-international",
     imgUrl: "/images/auditors/certifi-international.png",
+    avaiableDates: [
+      moment().toISOString(),
+      moment().add(10, "day").toISOString(),
+      moment().add(11, "day").toISOString(),
+      moment().add(12, "day").toISOString(),
+      moment().add(13, "day").toISOString(),
+      moment().add(14, "day").toISOString(),
+      moment().add(15, "day").toISOString(),
+      moment().add(16, "day").toISOString(),
+      moment().add(17, "day").toISOString(),
+      moment().add(18, "day").toISOString(),
+      moment().add(19, "day").toISOString(),
+      moment().add(20, "day").toISOString(),
+      moment().add(21, "day").toISOString(),
+      moment().add(22, "day").toISOString(),
+      moment().add(23, "day").toISOString(),
+      moment().add(24, "day").toISOString(),
+    ],
   },
 ];
 
@@ -71,7 +137,7 @@ const validate = (data: BookAppointmentFormData): BookAppointmentErrors => {
   return errors;
 };
 
-const BookAppointment = () => {
+const BookAppointment = ({ setStep }: { setStep: (step: number) => void }) => {
   const [formData, setFormData] =
     useState<BookAppointmentFormData>(initialState);
   const [formErrors, setFormErrors] = useState<BookAppointmentErrors>({});
@@ -137,136 +203,151 @@ const BookAppointment = () => {
   };
 
   return (
-    <div className="flex w-full gap-10">
-      <div className="flex-1">
-        {formData?.auditor ? (
-          <div className="w-full">
-            <img
-              src={formData?.auditor?.imgUrl}
-              alt={"Logo"}
-              className="h-15 w-auto object-cover"
-            />
-            <TextElement as="h2" className="mt-5 text-[22px] font-semibold">
-              {formData?.auditor?.title}
-            </TextElement>
-            {/* <TextElement as="h2" className="my-5 text-[18px] font-semibold">
-              Available Dates
-            </TextElement> */}
-            {/* <StyledDatePicker
-              onDateSelect={(val) => console.log("date", val)}
-            /> */}
-          </div>
-        ) : (
-          <div className="flex h-[100px] w-full items-center justify-center">
-            <TextElement>No auditor select</TextElement>
-          </div>
-        )}
+    <div>
+      <div
+        className="mb-7 flex w-[80px] cursor-pointer items-center gap-2"
+        onClick={() => setStep(1)}
+      >
+        <HiOutlineArrowNarrowLeft size={18} />{" "}
+        <TextElement as="p" className="text-[18px] font-semibold">
+          Back
+        </TextElement>
       </div>
-      <div className="flex-1">
-        <form
-          className="font-[Altform TRIAL] space-y-6"
-          onSubmit={handleSubmit}
-        >
-          {/* Auditor */}
-          <div>
-            <label className="mb-1 block text-[16px] text-[#1E1F21]">
-              Select auditor
-            </label>
-            <CustomSelect
-              value={formData?.auditor}
-              onSelect={(val) => handleChange("auditor", val)}
-              options={auditProviders}
-            />
-            {formErrors.auditor && (
-              <TextElement className="text-red-500">
-                {formErrors.auditor}
+      <div className="flex w-full gap-10">
+        <div className="flex-1">
+          {formData?.auditor ? (
+            <div className="w-full">
+              <img
+                src={formData?.auditor?.imgUrl}
+                alt={"Logo"}
+                className="h-15 w-auto object-cover"
+              />
+              <TextElement as="h2" className="mt-5 text-[22px] font-semibold">
+                {formData?.auditor?.title}
               </TextElement>
-            )}
-          </div>
-
-          {/* Date */}
-          <div>
-            <StyledDatePicker
-              value={formData?.date}
-              onDateSelect={(val) => handleChange("date", val)}
-            />
-            {formErrors.date && (
-              <TextElement className="text-red-500">
-                {formErrors.date}
+              <TextElement as="h2" className="my-5 text-[18px] font-semibold">
+                Available Dates
               </TextElement>
-            )}
-          </div>
+              <ReadonlyDatePicker
+                selectedDates={
+                  auditProviders?.find(
+                    (v) => v?.value === formData?.auditor?.value
+                  )?.avaiableDates || []
+                }
+              />
+            </div>
+          ) : (
+            <div className="flex h-[100px] w-full items-center justify-center">
+              <TextElement>No auditor select</TextElement>
+            </div>
+          )}
+        </div>
+        <div className="flex-1">
+          <form
+            className="font-[Altform TRIAL] space-y-6"
+            onSubmit={handleSubmit}
+          >
+            {/* Auditor */}
+            <div>
+              <label className="mb-1 block text-[16px] text-[#1E1F21]">
+                Select auditor
+              </label>
+              <CustomSelect
+                value={formData?.auditor}
+                onSelect={(val) => handleChange("auditor", val)}
+                options={auditProviders}
+              />
+              {formErrors.auditor && (
+                <TextElement className="text-red-500">
+                  {formErrors.auditor}
+                </TextElement>
+              )}
+            </div>
 
-          {/* Time */}
-          <div>
-            <label className="mb-1 block text-[16px] text-[#1E1F21]">
-              Time
-            </label>
-            <CustomSelect
-              value={formData?.time}
-              placeholder="Select Time"
-              onSelect={(val) => handleChange("time", val)}
-              options={Array.from({ length: 48 }, (_, i) => {
-                const hour = Math.floor(i / 2);
-                const minute = i % 2 === 0 ? "00" : "30";
-                const label = `${hour.toString().padStart(2, "0")}:${minute}`;
-                return { value: label, title: label };
-              })}
-            />
-            {formErrors.time && (
-              <TextElement className="text-red-500">
-                {formErrors.time}
-              </TextElement>
-            )}
-          </div>
+            {/* Date */}
+            <div>
+              <StyledDatePicker
+                value={formData?.date}
+                onDateSelect={(val) => handleChange("date", val)}
+              />
+              {formErrors.date && (
+                <TextElement className="text-red-500">
+                  {formErrors.date}
+                </TextElement>
+              )}
+            </div>
 
-          {/* Scope */}
-          <div>
-            <label className="mb-1 block text-[16px] text-[#1E1F21]">
-              Scope of audit
-            </label>
-            <CustomSelect
-              value={formData?.scope}
-              placeholder="Select Scope of audit"
-              onSelect={(val) => handleChange("scope", val)}
-              options={auditProviders.map((v) => ({
-                title: v.title,
-                value: v.value,
-              }))}
-            />
-            {formErrors.scope && (
-              <TextElement className="text-red-500">
-                {formErrors.scope}
-              </TextElement>
-            )}
-          </div>
+            {/* Time */}
+            <div>
+              <label className="mb-1 block text-[16px] text-[#1E1F21]">
+                Time
+              </label>
+              <CustomSelect
+                value={formData?.time}
+                placeholder="Select Time"
+                onSelect={(val) => handleChange("time", val)}
+                options={Array.from({ length: 48 }, (_, i) => {
+                  const hour = Math.floor(i / 2);
+                  const minute = i % 2 === 0 ? "00" : "30";
+                  const label = `${hour.toString().padStart(2, "0")}:${minute}`;
+                  return { value: label, title: label };
+                })}
+              />
+              {formErrors.time && (
+                <TextElement className="text-red-500">
+                  {formErrors.time}
+                </TextElement>
+              )}
+            </div>
 
-          {/* Notes */}
-          <div>
-            <label className="mb-1 block text-[16px] text-[#1E1F21]">
-              Notes
-            </label>
-            <textarea
-              rows={4}
-              placeholder="Anything you will like me to know before the appointment"
-              value={formData.notes}
-              onChange={(e) => handleChange("notes", e.target.value)}
-              className="w-full resize-none rounded-lg border border-[#525558] px-4 py-3 text-[16px] text-[#1E1F21] focus:outline-none"
-            />
-          </div>
+            {/* Scope */}
+            <div>
+              <label className="mb-1 block text-[16px] text-[#1E1F21]">
+                Scope of audit
+              </label>
+              <CustomSelect
+                value={formData?.scope}
+                placeholder="Select Scope of audit"
+                onSelect={(val) => handleChange("scope", val)}
+                options={auditProviders.map((v) => ({
+                  title: v.title,
+                  value: v.value,
+                }))}
+              />
+              {formErrors.scope && (
+                <TextElement className="text-red-500">
+                  {formErrors.scope}
+                </TextElement>
+              )}
+            </div>
 
-          {/* Proceed Button */}
-          <div>
-            <Button
-              title={"Proceed to payment"}
-              type="submit"
-              isLoading={loading}
-              disabled={loading}
-              btnClassName="!text-[16px] !text-white"
-              className="h-[56px] w-full rounded-sm bg-[#F59432] py-3 text-[16px] transition hover:bg-[#e6862b]"
-            />
-          </div>
-        </form>
+            {/* Notes */}
+            <div>
+              <label className="mb-1 block text-[16px] text-[#1E1F21]">
+                Notes
+              </label>
+              <textarea
+                rows={4}
+                placeholder="Anything you will like me to know before the appointment"
+                value={formData.notes}
+                onChange={(e) => handleChange("notes", e.target.value)}
+                className="w-full resize-none rounded-lg border border-[#525558] px-4 py-3 text-[16px] text-[#1E1F21] focus:outline-none"
+              />
+            </div>
+
+            {/* Proceed Button */}
+            <div>
+              <Button
+                title={"Proceed to payment"}
+                type="submit"
+                isLoading={loading}
+                disabled={loading}
+                btnClassName="!text-[16px] !text-white"
+                className="h-[56px] w-full rounded-sm bg-[#F59432] py-3 text-[16px] transition hover:bg-[#e6862b]"
+              />
+            </div>
+          </form>
+        </div>
       </div>
     </div>
   );
