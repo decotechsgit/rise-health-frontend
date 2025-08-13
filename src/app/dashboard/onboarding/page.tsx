@@ -12,11 +12,14 @@ const Page = async ({
   searchParams: Promise<{ step: string }>;
 }) => {
   const { step: stepKey } = await searchParams;
+
   if (!stepKey) {
     redirect(PAGES_ROUTES.dashboardRegistration);
   }
+
   const onboardingContentPromise = onboardingService.getOnboardingSteps();
   const onboardingStepPromise = onboardingService.getOnboardingStep(stepKey);
+
   return (
     <Suspense fallback={<OnboardingPageSkeleton />}>
       <OnboardingContent

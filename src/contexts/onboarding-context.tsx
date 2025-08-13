@@ -14,6 +14,7 @@ import { onboardingService } from "@api/onboarding.service";
 
 type OnboardingContextType = {
   loading: boolean;
+  setLoading: (value: boolean) => void;
   onboarding: OnboardingProgress | null;
   onboardingStep: Step | null;
   setOnboardingStep: Dispatch<SetStateAction<Step | null>>;
@@ -117,6 +118,7 @@ export const OnboardingProvider = ({
     <OnboardingContext.Provider
       value={{
         loading,
+        setLoading,
         onboarding,
         setOnboarding,
         onboardingStep,

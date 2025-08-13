@@ -72,6 +72,13 @@ const SubmittedFormsList: React.FC<SubmittedFormsListProps> = ({
   formCopies,
 }) => {
   const [search, setSearch] = useState("");
+
+  const tableData = formCopies
+    ? formCopies?.filter((v) =>
+        v?.title?.toLocaleLowerCase()?.includes(search?.toLocaleLowerCase())
+      )
+    : [];
+
   return (
     <div className="mt-8 w-full">
       <SearchableHeader
@@ -90,9 +97,19 @@ const SubmittedFormsList: React.FC<SubmittedFormsListProps> = ({
             <TableHeader />
           </thead>
           <tbody>
-            {formCopies.map((copy, index) => (
-              <TableRow key={copy.id} copy={copy} index={index} />
-            ))}
+            {tableData?.length ? (
+              tableData?.map((copy, index) => (
+                <TableRow key={copy.id} copy={copy} index={index} />
+              ))
+            ) : (
+              <tr>
+                <td colSpan={1000} className="text-center">
+                  <TextElement className="p-10 font-[500] lg:text-[18px]">
+                    No data found
+                  </TextElement>
+                </td>
+              </tr>
+            )}
           </tbody>
         </table>
       </div>

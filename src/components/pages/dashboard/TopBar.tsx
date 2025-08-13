@@ -1,40 +1,40 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { IoMdArrowDropdown } from "react-icons/io";
 
 import { logoutAction } from "@/actions/auth.actions";
 import { getUserName } from "@/actions/user.actions";
 import Dropdown from "@components/shared/dropdown/Dropdown";
-import NotificationsPopup from "@components/shared/notification/NotificationsPopup";
+// import NotificationsPopup from "@components/shared/notification/NotificationsPopup";
 import TextElement from "@components/shared/typography/TextElement.typo";
 
 const handleClick = async () => {
   await logoutAction();
 };
 
-const notifications = [
-  {
-    id: 1,
-    title: "New Update: Policy Change - Incident Reporting",
-    description: "A new policy version has been released.",
-    date: "Apr 15, 2025",
-  },
-  {
-    id: 2,
-    title: "Updated Form: Staff Onboarding Checklist",
-    description: "Form updated with new compliance checks.",
-    date: "Apr 15, 2025",
-  },
-  {
-    id: 3,
-    title: "Legislation Update: NDIS Worker Screening",
-    description:
-      "Changes reflect updated requirements from the NDIS Commission.",
-    date: "Apr 15, 2025",
-  },
-];
+// const notifications = [
+//   {
+//     id: 1,
+//     title: "New Update: Policy Change - Incident Reporting",
+//     description: "A new policy version has been released.",
+//     date: "Apr 15, 2025",
+//   },
+//   {
+//     id: 2,
+//     title: "Updated Form: Staff Onboarding Checklist",
+//     description: "Form updated with new compliance checks.",
+//     date: "Apr 15, 2025",
+//   },
+//   {
+//     id: 3,
+//     title: "Legislation Update: NDIS Worker Screening",
+//     description:
+//       "Changes reflect updated requirements from the NDIS Commission.",
+//     date: "Apr 15, 2025",
+//   },
+// ];
 
 const dropDownOptions = [
   {
@@ -51,6 +51,29 @@ const TopBar = () => {
   const [showNotifications, setShowNotifications] = useState(false);
   const [showDropdown, setShowDropdown] = useState(false);
   const [nameInitials, setNameInitials] = useState<string>("");
+
+  const dropdownRef = useRef<HTMLDivElement>(null);
+  // const notificationsRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target as Node)
+        // &&
+        // notificationsRef.current &&
+        // !notificationsRef.current.contains(event.target as Node)
+      ) {
+        setShowDropdown(false);
+        // setShowNotifications(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   useEffect(() => {
     const fetchSession = async () => {
@@ -73,8 +96,8 @@ const TopBar = () => {
     fetchSession();
   }, []);
 
-  const iconButtonStyle =
-    "relative w-[60px] h-[60px] flex items-center justify-center";
+  // const iconButtonStyle =
+  //   "relative w-[60px] h-[60px] flex items-center justify-center";
   return (
     <header className="bg-[var(--color-background-page-bg)] shadow-sm">
       <div className="flex items-center justify-between px-4 py-3 sm:px-6 sm:py-4">
@@ -131,8 +154,8 @@ const TopBar = () => {
 
         {/* Desktop Actions */}
         <div className="hidden items-center space-x-4 sm:flex">
-          {/* Messages */}
-          <button className={iconButtonStyle}>
+          {/* Messages will be implement */}
+          {/* <button className={iconButtonStyle}>
             <Image
               src="/ic_message.svg"
               alt="Messages"
@@ -143,10 +166,10 @@ const TopBar = () => {
             <span className="absolute top-0 right-0 flex h-5 w-5 items-center justify-center rounded-full bg-[var(--color-message-notification-text)] text-xs text-white">
               <TextElement className="text-xs text-white">2</TextElement>
             </span>
-          </button>
+          </button> */}
 
-          {/* Notifications */}
-          <div className="relative">
+          {/* Notifications will be implement*/}
+          {/* <div className="relative" ref={notificationsRef}>
             <button
               className={iconButtonStyle}
               onClick={() => {
@@ -172,10 +195,10 @@ const TopBar = () => {
               onClose={() => setShowNotifications(false)}
               notifications={notifications}
             />
-          </div>
+          </div> */}
 
           {/* User Initials */}
-          <div>
+          <div ref={dropdownRef}>
             <div
               className="flex h-[60px] w-[60px] cursor-pointer items-center justify-center rounded-full bg-[var(--color-compliance-green)]"
               onClick={() => {

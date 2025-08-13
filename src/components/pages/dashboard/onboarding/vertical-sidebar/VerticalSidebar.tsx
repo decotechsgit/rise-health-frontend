@@ -7,8 +7,10 @@ import { onboardingService } from "@api/onboarding.service";
 import TextElement from "@components/shared/typography/TextElement.typo";
 
 import SidebarItem from "./SidebarItem";
+import { useOnboarding } from "@/contexts/onboarding-context";
 
 const VerticalSidebar = () => {
+  const { setLoading } = useOnboarding();
   const [steps, setSteps] = useState<Step[] | null>(null);
   const params = useSearchParams();
 
@@ -16,8 +18,10 @@ const VerticalSidebar = () => {
 
   useEffect(() => {
     const fetchSteps = async () => {
+      setLoading(true);
       const data: Step[] = await onboardingService.getOnboardingSteps();
       setSteps(data);
+      setLoading(false);
     };
     fetchSteps();
   }, []);

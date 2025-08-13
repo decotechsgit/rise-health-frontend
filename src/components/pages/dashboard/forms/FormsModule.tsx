@@ -45,6 +45,12 @@ const FormsModule = ({ initialData, formCopies }: FormsModuleProps) => {
     return router.push(`${route}?${searchParams.toString()}`);
   };
 
+  const list = initialData
+    ? initialData?.filter((v) =>
+        v?.name?.toLocaleLowerCase()?.includes(search?.toLocaleLowerCase())
+      )
+    : [];
+
   return (
     <div>
       <SearchableHeader
@@ -66,10 +72,20 @@ const FormsModule = ({ initialData, formCopies }: FormsModuleProps) => {
       />
 
       {initialData && initialData?.length > 0 ? (
-        <ExpandableList
-          packs={initialData ? initialData : []}
-          onClick={handleFormsClick}
-        />
+        <>
+          {list?.length ? (
+            <ExpandableList packs={list} onClick={handleFormsClick} />
+          ) : (
+            <div className="flex h-[100px] items-center justify-center">
+              <TextElement
+                as="p"
+                className={`${altform.className} !text-[20px]`}
+              >
+                No data found
+              </TextElement>
+            </div>
+          )}
+        </>
       ) : (
         <div className={`mx-auto my-3 w-[90%]`}>
           <TextElement as="p" className={altform.className}>
