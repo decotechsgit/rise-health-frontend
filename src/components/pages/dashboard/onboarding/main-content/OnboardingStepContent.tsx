@@ -72,7 +72,7 @@ const OnboardingContent = ({
               return null;
           }
         })}
-        {isBookAnAuditStep && <AuditStep />}
+        {isBookAnAuditStep && <AuditStep onboardingStep={onboardingStep} />}
         <div className="mx-auto mt-20 flex w-full justify-center overflow-x-hidden lg:hidden">
           <OnboardingActions
             stepKey={stepKey}

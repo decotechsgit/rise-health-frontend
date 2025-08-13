@@ -137,7 +137,12 @@ const validate = (data: BookAppointmentFormData): BookAppointmentErrors => {
   return errors;
 };
 
-const BookAppointment = ({ setStep }: { setStep: (step: number) => void }) => {
+interface BookAppointmentProps {
+  setStep: (step: number) => void;
+  onboardingStep: Step;
+}
+
+const BookAppointment = ({ setStep, onboardingStep }: BookAppointmentProps) => {
   const [formData, setFormData] =
     useState<BookAppointmentFormData>(initialState);
   const [formErrors, setFormErrors] = useState<BookAppointmentErrors>({});
@@ -191,10 +196,16 @@ const BookAppointment = ({ setStep }: { setStep: (step: number) => void }) => {
         );
       }
 
+      const childrenKey = String(onboardingStep?.children?.[0]?.id);
+
       setOnboarding({
         ...onboarding,
         progress: {
           ...onboarding.progress,
+          checkboxes: {
+            ...onboarding?.progress?.checkboxes,
+            [childrenKey]: true,
+          },
           completedSteps: [...completedSteps],
           audit: [updatedFormData],
         },
@@ -306,6 +317,7 @@ const BookAppointment = ({ setStep }: { setStep: (step: number) => void }) => {
                 Scope of audit
               </label>
               <CustomSelect
+                key="Scope"
                 value={formData?.scope}
                 placeholder="Select Scope of audit"
                 onSelect={(val) => handleChange("scope", val)}

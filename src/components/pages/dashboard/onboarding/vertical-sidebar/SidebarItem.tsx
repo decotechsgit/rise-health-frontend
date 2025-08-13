@@ -44,11 +44,9 @@ const SidebarItem = ({
         >
           <TextElement
             as="span"
-            className={` ${isSelected ? "text-black" : "text-gray-400"} ${altform.className}`}
+            className={` ${isCompleted ? "text-white" : isSelected ? "text-black" : "text-gray-400"} ${altform.className}`}
           >
             {isCompleted ? (
-              step.order
-            ) : (
               <svg
                 width="12"
                 height="10"
@@ -64,6 +62,8 @@ const SidebarItem = ({
                   strokeLinejoin="round"
                 />
               </svg>
+            ) : (
+              step.order
             )}
           </TextElement>
         </div>

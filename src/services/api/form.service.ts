@@ -7,7 +7,6 @@ class FormService extends ApiClient {
 
   // GET /form/all
   async getAllForms(referenceId: string, referenceType: string) {
-    console.log("referenceType: ", referenceType);
     return await this.get<TFormData[]>(`/all`, {
       referenceId: referenceId,
       referenceType: referenceType,

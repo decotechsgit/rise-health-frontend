@@ -3,7 +3,9 @@ import SummaryCheckBox from "@components/pages/dashboard/onboarding/main-content
 import MediaSection from "@components/pages/dashboard/onboarding/summary/MediaSection";
 import SelectedRegistrationGroups from "@components/pages/dashboard/onboarding/summary/SelectedRegistrationGroups";
 import SuggestedPacks from "@components/pages/dashboard/onboarding/summary/SuggestedPacks";
+import Collapse from "@components/shared/collapse/Collapse";
 import TextElement from "@components/shared/typography/TextElement.typo";
+import MissingFields from "../MissingFields";
 
 const Summary = async ({ steps }: { steps: Promise<Step[]> }) => {
   const res = await steps;
@@ -44,11 +46,23 @@ const Summary = async ({ steps }: { steps: Promise<Step[]> }) => {
         Summary
       </TextElement>
       <section className="flex flex-wrap justify-between xl:flex-nowrap">
-        <div className="flex-2/3">
-          {completedSteps &&
+        <div className="mt-7 flex-2/3">
+          {/* {completedSteps &&
             res.map((step: Step) => {
               return <SummaryCheckBox step={step} key={step.id} />;
-            })}
+            })} */}
+
+          {completedSteps && (
+            <Collapse
+              items={res.map((step, index) => {
+                return {
+                  key: String(index),
+                  label: <SummaryCheckBox step={step} />,
+                  children: <MissingFields step={step} />,
+                };
+              })}
+            />
+          )}
         </div>
         <aside className="flex-1/3 p-4">
           <SelectedRegistrationGroups selectedGroups={selectedGroups} />

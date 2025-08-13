@@ -2,12 +2,16 @@ import React, { useState } from "react";
 import Step1 from "./Step1";
 import BookAppointment from "./BookAppointment";
 
-const AuditStep = () => {
+interface AuditStepProps {
+  onboardingStep: Step;
+}
+
+const AuditStep = ({ onboardingStep }: AuditStepProps) => {
   const [step, setStep] = useState<number>(1);
   return step === 1 ? (
     <Step1 setStep={setStep} />
   ) : step === 2 ? (
-    <BookAppointment setStep={setStep} />
+    <BookAppointment setStep={setStep} onboardingStep={onboardingStep} />
   ) : (
     ""
   );

@@ -15,15 +15,11 @@ interface PageProps {
 
 const PoliciesProceduresPage = async ({ searchParams }: PageProps) => {
   const { categoryId, subcategoryId, policyId } = await searchParams;
-  console.log("categoryId", categoryId);
-  console.log("subcategoryId", subcategoryId);
-  console.log("policyId", policyId);
 
   try {
     const policy = await policyService.getPolicy(
       policyId || "00000000-0000-0000-0000-000000000000"
     );
-    console.log("policy", policy);
 
     return (
       <div className="p-6">

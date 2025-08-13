@@ -204,7 +204,6 @@ const FormsContent = function ({
   initialFiles,
 }: FormsContentProps) {
   const sectionMap: Record<string, TFormField[]> = {};
-  console.log("formData", formData);
   formData.forEach((field) => {
     const sections = field.sections?.length
       ? field.sections
@@ -270,9 +269,6 @@ const FormsContent = function ({
         formDataObj.append(`files[${fieldId}][${index}]`, file);
       });
     });
-
-    console.log("removedFiles", removedFiles);
-    console.log("fileFields", fileFields);
 
     onSave?.(data, formData);
     onSubmit?.(data, formData, fileFields, removedFiles);
