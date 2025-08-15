@@ -44,10 +44,12 @@ const OnboardingActions = ({
     onboarding?.progress?.completedSteps?.includes(stepKey) ?? false;
 
   useEffect(() => {
-    setOnboarding({
-      ...onboarding,
-      currentStepKey: stepKey,
-    });
+    if (onboarding) {
+      setOnboarding({
+        ...onboarding,
+        currentStepKey: stepKey,
+      });
+    }
   }, [stepKey]);
 
   const markAsComplete = async () => {

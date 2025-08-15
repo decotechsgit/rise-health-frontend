@@ -18,7 +18,7 @@ type FileUploadItemProps = {
 
 const FileUploadItem = ({ step, stepKey }: FileUploadItemProps) => {
   const [loading, setloading] = useState(false);
-  const { onboarding, setOnboarding } = useOnboarding();
+  const { onboarding, setOnboarding, allSteps } = useOnboarding();
   const fileInputRef = useRef<HTMLInputElement | null>(null);
   const [isDragging, setIsDragging] = useState(false);
 
@@ -65,14 +65,37 @@ const FileUploadItem = ({ step, stepKey }: FileUploadItemProps) => {
         const existingFiles =
           onboarding?.progress?.uploads?.receive_file_upload?.[step.id] || [];
 
-        setOnboarding({
+        const currentStep = allSteps?.find((v) => v?.stepKey === stepKey);
+
+        const currentStepChildrenIds =
+          currentStep?.children?.map((v) => v?.id) ?? [];
+
+        const checkedIds = {
+          ...onboarding?.progress?.checkboxes,
+          [step.id]: true,
+        };
+
+        const hasAnyUnchecked = currentStepChildrenIds.some(
+          (id) => checkedIds?.[id] !== true
+        );
+
+        let completedSteps =
+          (onboarding && onboarding.progress?.completedSteps) ?? [];
+
+        if (hasAnyUnchecked) {
+          completedSteps = completedSteps.filter((item) => item !== stepKey);
+        } else {
+          if (!completedSteps.includes(stepKey)) {
+            completedSteps.push(stepKey);
+          }
+        }
+
+        const obj = {
           ...onboarding,
           progress: {
             ...onboarding?.progress,
-            checkboxes: {
-              ...onboarding?.progress?.checkboxes,
-              [step.id]: true,
-            },
+            checkboxes: checkedIds,
+            completedSteps,
             uploads: {
               ...onboarding?.progress?.uploads,
               receive_file_upload: {
@@ -81,7 +104,9 @@ const FileUploadItem = ({ step, stepKey }: FileUploadItemProps) => {
               },
             },
           },
-        });
+        };
+
+        setOnboarding(obj);
       }
     } catch (error) {
       console.error("File upload failed:", error);

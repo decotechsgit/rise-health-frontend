@@ -20,7 +20,7 @@ declare global {
   type AuditType = {
     auditor: string;
     date: Date | string;
-    time: string;
+    // time: string;
     scopeOfAudit: string;
     notes: string;
   };

@@ -20,7 +20,7 @@ type SelectOption = {
 type BookAppointmentFormData = {
   auditor: SelectOption | null;
   date: Date | null;
-  time: SelectOption | null;
+  // time: SelectOption | null;
   scope: SelectOption | null;
   notes: string;
 };
@@ -120,10 +120,37 @@ const auditProviders = [
   },
 ];
 
+const auditScope = [
+  {
+    title: "Verification Audit",
+    value: "Verification Audit",
+  },
+  {
+    title: "Certification Audit",
+    value: "Certification Audit",
+  },
+  {
+    title: "Mid-Term Audit",
+    value: "Mid-Term Audit",
+  },
+  {
+    title: "Re-Certification Audit",
+    value: "Re-Certification Audit",
+  },
+  {
+    title: "Scope Extension Audit",
+    value: "Scope Extension Audit",
+  },
+  {
+    title: "Special or Targeted Audit",
+    value: "Special or Targeted Audit",
+  },
+];
+
 const initialState: BookAppointmentFormData = {
   auditor: null,
   date: new Date(),
-  time: null,
+  // time: null,
   scope: null,
   notes: "",
 };
@@ -132,7 +159,7 @@ const validate = (data: BookAppointmentFormData): BookAppointmentErrors => {
   const errors: BookAppointmentErrors = {};
   if (!data.auditor) errors.auditor = "Auditor is required";
   if (!data.date) errors.date = "Date is required";
-  if (!data.time) errors.time = "Time is required";
+  // if (!data.time) errors.time = "Time is required";
   if (!data.scope) errors.scope = "Scope of audit is required";
   return errors;
 };
@@ -151,17 +178,17 @@ const BookAppointment = ({ setStep, onboardingStep }: BookAppointmentProps) => {
   const currentStepKey = searchParams.get("step") as string;
 
   useEffect(() => {
-    if (onboarding?.progress?.audit) {
+    if (onboarding?.progress?.audit?.length) {
       const obj = onboarding?.progress?.audit[0];
       const auditor =
         auditProviders.find((v) => v?.value === obj?.auditor) ?? null;
       const scope =
-        auditProviders.find((v) => v?.value === obj?.scopeOfAudit) ?? null;
+        auditScope.find((v) => v?.value === obj?.scopeOfAudit) ?? null;
 
       setFormData({
         auditor,
         date: new Date(obj?.date),
-        time: { title: obj?.time, value: obj?.time },
+        // time: { title: obj?.time, value: obj?.time },
         scope,
         notes: obj?.notes,
       });
@@ -184,17 +211,13 @@ const BookAppointment = ({ setStep, onboardingStep }: BookAppointmentProps) => {
     const updatedFormData: AuditType = {
       auditor: String(formData?.auditor?.value),
       date: String(formData?.date),
-      time: String(formData?.time?.value),
+      // time: String(formData?.time?.value),
       scopeOfAudit: String(formData?.scope?.value),
       notes: formData?.notes,
     };
+
     if (onboarding) {
       let completedSteps = onboarding.progress?.completedSteps ?? [];
-      if (completedSteps.includes(currentStepKey)) {
-        completedSteps = completedSteps.filter(
-          (item) => item !== currentStepKey
-        );
-      }
 
       const childrenKey = String(onboardingStep?.children?.[0]?.id);
 
@@ -206,7 +229,7 @@ const BookAppointment = ({ setStep, onboardingStep }: BookAppointmentProps) => {
             ...onboarding?.progress?.checkboxes,
             [childrenKey]: true,
           },
-          completedSteps: [...completedSteps],
+          completedSteps: [...completedSteps, currentStepKey],
           audit: [updatedFormData],
         },
       });
@@ -289,7 +312,7 @@ const BookAppointment = ({ setStep, onboardingStep }: BookAppointmentProps) => {
             </div>
 
             {/* Time */}
-            <div>
+            {/* <div>
               <label className="mb-1 block text-[16px] text-[#1E1F21]">
                 Time
               </label>
@@ -309,7 +332,7 @@ const BookAppointment = ({ setStep, onboardingStep }: BookAppointmentProps) => {
                   {formErrors.time}
                 </TextElement>
               )}
-            </div>
+            </div> */}
 
             {/* Scope */}
             <div>
@@ -321,10 +344,7 @@ const BookAppointment = ({ setStep, onboardingStep }: BookAppointmentProps) => {
                 value={formData?.scope}
                 placeholder="Select Scope of audit"
                 onSelect={(val) => handleChange("scope", val)}
-                options={auditProviders.map((v) => ({
-                  title: v.title,
-                  value: v.value,
-                }))}
+                options={auditScope}
               />
               {formErrors.scope && (
                 <TextElement className="text-red-500">

@@ -1,6 +1,6 @@
 "use client";
 
-import { useActionState } from "react";
+import React, { useActionState } from "react";
 import { useForm } from "react-hook-form";
 import { FaCheckCircle } from "react-icons/fa";
 import { FaRegCircle } from "react-icons/fa6";
@@ -71,8 +71,8 @@ const CreatePasswordWrapper = ({ email, otp }: ICreatePasswordWrapper) => {
         </Row>
 
         <Row className="mt-[30px] w-full flex-col lg:mt-[40px]">
-          {[fullNameField, passwordField].map((item) => (
-            <>
+          {[fullNameField, passwordField]?.map((item) => (
+            <React.Fragment key={item.name}>
               <LabeledInput
                 key={item.name}
                 name={item.name}
@@ -100,7 +100,7 @@ const CreatePasswordWrapper = ({ email, otp }: ICreatePasswordWrapper) => {
                   <TextElement as="h4">{fieldErrors[item.name]}</TextElement>
                 </Row>
               )}
-            </>
+            </React.Fragment>
           ))}
 
           {passwordValue && (

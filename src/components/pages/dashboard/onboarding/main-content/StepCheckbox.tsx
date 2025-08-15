@@ -15,30 +15,47 @@ const StepCheckbox = ({
   className,
   disabled = false,
 }: StepCheckboxProps) => {
-  const { onboarding, setOnboarding } = useOnboarding();
+  const { onboarding, setOnboarding, allSteps } = useOnboarding();
   const searchParams = useSearchParams();
   const currentStepKey = searchParams.get("step") as string;
   const isChecked = onboarding?.progress?.checkboxes?.[stepId] ?? false;
 
   const handleChange = () => {
+    const currentStep = allSteps?.find((v) => v?.stepKey === currentStepKey);
+    const currentStepChildrenIds =
+      currentStep?.children?.map((v) => v?.id) ?? [];
+    const checkedIds = {
+      ...onboarding?.progress?.checkboxes,
+      [stepId]: !isChecked,
+    };
+
+    const hasAnyUnchecked = currentStepChildrenIds.some(
+      (id) => checkedIds?.[id] !== true
+    );
+
     if (onboarding && !disabled) {
       let completedSteps = onboarding.progress?.completedSteps ?? [];
-      if (completedSteps.includes(currentStepKey) && isChecked) {
+
+      if (hasAnyUnchecked) {
         completedSteps = completedSteps.filter(
           (item) => item !== currentStepKey
         );
+      } else {
+        if (!completedSteps.includes(currentStepKey)) {
+          completedSteps.push(currentStepKey);
+        }
       }
-      setOnboarding({
+
+      const obj = {
         ...onboarding,
         progress: {
           ...onboarding.progress,
-          checkboxes: {
-            ...onboarding.progress?.checkboxes,
-            [stepId]: !isChecked,
-          },
-          completedSteps: [...completedSteps],
+          checkboxes: checkedIds,
+          completedSteps,
         },
-      });
+      };
+
+      setOnboarding(obj);
     }
   };
 
