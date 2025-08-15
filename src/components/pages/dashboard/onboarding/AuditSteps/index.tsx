@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import Step1 from "./Step1";
+
 import BookAppointment from "./BookAppointment";
+import Step1 from "./Step1";
 
 interface AuditStepProps {
   onboardingStep: Step;

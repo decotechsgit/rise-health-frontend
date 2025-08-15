@@ -5,6 +5,7 @@ import SelectedRegistrationGroups from "@components/pages/dashboard/onboarding/s
 import SuggestedPacks from "@components/pages/dashboard/onboarding/summary/SuggestedPacks";
 import Collapse from "@components/shared/collapse/Collapse";
 import TextElement from "@components/shared/typography/TextElement.typo";
+
 import MissingFields from "../MissingFields";
 
 const Summary = async ({ steps }: { steps: Promise<Step[]> }) => {

@@ -1,10 +1,12 @@
 "use client";
 
 import React from "react";
-import { useOnboarding } from "@/contexts/onboarding-context";
-import { altform } from "@/app/fonts/altform";
-import TextElement from "@components/shared/typography/TextElement.typo";
 import { GoDotFill } from "react-icons/go";
+
+import { altform } from "@/app/fonts/altform";
+import { useOnboarding } from "@/contexts/onboarding-context";
+import TextElement from "@components/shared/typography/TextElement.typo";
+
 
 interface MissingFieldsProps {
   step: Step;

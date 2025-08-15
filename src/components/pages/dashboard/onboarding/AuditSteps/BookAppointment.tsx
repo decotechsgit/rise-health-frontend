@@ -1,15 +1,16 @@
 "use client";
 
+import moment from "moment";
+import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
+import { HiOutlineArrowNarrowLeft } from "react-icons/hi";
+
+import { useOnboarding } from "@/contexts/onboarding-context";
+import Button from "@components/shared/button";
+import ReadonlyDatePicker from "@components/shared/date-picker/ReadonlyDatePicker";
 import StyledDatePicker from "@components/shared/date-picker/StyledDatePicker";
 import CustomSelect from "@components/shared/select-with-images/CustomSelect";
 import TextElement from "@components/shared/typography/TextElement.typo";
-import { useOnboarding } from "@/contexts/onboarding-context";
-import { useSearchParams } from "next/navigation";
-import Button from "@components/shared/button";
-import ReadonlyDatePicker from "@components/shared/date-picker/ReadonlyDatePicker";
-import moment from "moment";
-import { HiOutlineArrowNarrowLeft } from "react-icons/hi";
 
 type SelectOption = {
   title: string;
@@ -195,7 +196,10 @@ const BookAppointment = ({ setStep, onboardingStep }: BookAppointmentProps) => {
     }
   }, [onboarding]);
 
-  const handleChange = (field: keyof BookAppointmentFormData, value: any) => {
+  const handleChange = (
+    field: keyof BookAppointmentFormData,
+    value: unknown
+  ) => {
     setFormData((prev) => ({ ...prev, [field]: value }));
     setFormErrors((prev) => ({ ...prev, [field]: "" }));
   };
@@ -217,7 +221,7 @@ const BookAppointment = ({ setStep, onboardingStep }: BookAppointmentProps) => {
     };
 
     if (onboarding) {
-      let completedSteps = onboarding.progress?.completedSteps ?? [];
+      const completedSteps = onboarding.progress?.completedSteps ?? [];
 
       const childrenKey = String(onboardingStep?.children?.[0]?.id);
 

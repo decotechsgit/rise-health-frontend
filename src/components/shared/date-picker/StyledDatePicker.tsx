@@ -1,9 +1,9 @@
 "use client";
+import moment from "moment";
 import React, { useState, useEffect, useRef } from "react";
 
 import { altform } from "@/app/fonts/altform";
 import TextElement from "@components/shared/typography/TextElement.typo";
-import moment from "moment";
 
 const CalendarIcon = () => (
   <svg

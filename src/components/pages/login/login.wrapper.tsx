@@ -2,16 +2,16 @@
 
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import { MdOutlineInfo } from "react-icons/md";
-import { MdDone } from "react-icons/md";
+import { MdOutlineInfo , MdDone } from "react-icons/md";
+
 
 import { PAGES_ROUTES } from "@/constants/routes.constants";
 import { userService } from "@api/user.service";
 import GoogleLoginButton from "@components/layout/social-login/GoogleLogin";
 import IconButton from "@components/shared/button";
+import Input from "@components/shared/form/Input";
 import Row from "@components/shared/row";
 import TextElement from "@components/shared/typography/TextElement.typo";
-import Input from "@components/shared/form/Input";
 
 const LoginWrapper = () => {
   const router = useRouter();

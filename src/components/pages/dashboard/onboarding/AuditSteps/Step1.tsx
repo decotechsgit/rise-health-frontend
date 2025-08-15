@@ -1,10 +1,9 @@
-import TextElement from "@components/shared/typography/TextElement.typo";
+import Image from "next/image";
 import { FaPlay } from "react-icons/fa";
+
 import { altform } from "@/app/fonts/altform";
 import Button from "@components/shared/button";
-import { IoIosArrowBack } from "react-icons/io";
-import Image from "next/image";
-import { useState } from "react";
+import TextElement from "@components/shared/typography/TextElement.typo";
 
 const steps = [
   {
@@ -17,7 +16,7 @@ const steps = [
   },
   {
     step: "3",
-    text: "Once engaged, they’ll send a service agreement and schedule your audit",
+    text: "Once engaged, they ll send a service agreement and schedule your audit",
   },
   {
     step: "4",
@@ -67,7 +66,7 @@ const Step2 = ({ setStep }: Step1Props) => {
               as="p"
               className={`${altform.className} !text-[18px] tracking-[-0.03em] text-[#6E6E6E]`}
             >
-              In this video, I'll guide you through the process of submitting
+              In this video, I ll guide you through the process of submitting
               your application and scope of audit.
             </TextElement>
           </div>

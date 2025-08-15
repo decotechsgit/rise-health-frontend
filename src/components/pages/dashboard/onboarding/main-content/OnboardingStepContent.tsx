@@ -10,6 +10,7 @@ import GroupSelectItem from "@components/pages/dashboard/onboarding/main-content
 import VideoPlayer from "@components/pages/dashboard/onboarding/main-content/VideoPlayer";
 import TextElement from "@components/shared/typography/TextElement.typo";
 import OnboardingPageSkeleton from "@components/skeletons/onboaring/OnboardingPageSkeleton";
+
 import AuditStep from "../AuditSteps";
 
 type OnboardingContentProps = {

@@ -3,11 +3,11 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
 import { PAGES_ROUTES } from "@/constants/routes.constants";
+import { useOnboarding } from "@/contexts/onboarding-context";
 import { onboardingService } from "@api/onboarding.service";
 import TextElement from "@components/shared/typography/TextElement.typo";
 
 import SidebarItem from "./SidebarItem";
-import { useOnboarding } from "@/contexts/onboarding-context";
 
 const VerticalSidebar = () => {
   const { setLoading } = useOnboarding();
